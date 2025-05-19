@@ -3,6 +3,7 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 config.yaml
+src/main/resources/config.yaml
 ### IntelliJ IDEA ###
 *.iws
 *.iml
