@@ -1,5 +1,6 @@
 package boss;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.SneakyThrows;
 import utils.JobUtils;
@@ -12,13 +13,13 @@ import java.util.stream.Collectors;
  * @author loks666
  * 项目链接: <a href="https://github.com/loks666/get_jobs">https://github.com/loks666/get_jobs</a>
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Data
 public class H5BossConfig {
     /**
      * 用于打招呼的语句
      */
     private String sayHi;
-
 
     /**
      * 搜索关键词列表
@@ -35,12 +36,10 @@ public class H5BossConfig {
      */
     private Map<String, String> customCityCode;
 
-
     /**
      * 工作经验要求
      */
     private List<String> experience;
-
 
     /**
      * 薪资范围
@@ -52,8 +51,7 @@ public class H5BossConfig {
      */
     private List<String> degree;
 
-    List<String> scale;
-
+    private List<String> scale;
 
     @SneakyThrows
     public static H5BossConfig init() {

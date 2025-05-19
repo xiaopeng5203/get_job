@@ -1,5 +1,6 @@
 package boss;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.SneakyThrows;
 import utils.JobUtils;
@@ -12,6 +13,7 @@ import java.util.stream.Collectors;
  * @author loks666
  * 项目链接: <a href="https://github.com/loks666/get_jobs">https://github.com/loks666/get_jobs</a>
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Data
 public class BossConfig {
     /**
@@ -110,6 +112,11 @@ public class BossConfig {
     private Boolean recommendJobs;
 
     private Boolean h5Jobs;
+
+    /**
+     * 投递过期天数（兼容配置文件多余字段）
+     */
+    private Integer deliverExpireDays;
 
     @SneakyThrows
     public static BossConfig init() {

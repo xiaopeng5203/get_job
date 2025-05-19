@@ -613,8 +613,12 @@ public class Boss {
                 }
 
                 if (config.getKeyFilter()) {
-                    if (!jobName.toLowerCase().contains(keyword.toLowerCase())) {
-                        log.info("已过滤：岗位【{}】名称不包含关键字【{}】", jobName, keyword);
+                    String jobNameLower = jobName.toLowerCase();
+                    String jobKeywordTagLower = job.getJobKeywordTag() != null ? job.getJobKeywordTag().toLowerCase() : "";
+                    String keywordLower = keyword.toLowerCase();
+                    if (!(jobNameLower.contains(keywordLower) || jobKeywordTagLower.contains(keywordLower))) {
+                        log.info("已过滤：岗位【{}】名称和描述均不包含关键字【{}】", jobName, keyword);
+                        page.close();
                         continue;
                     }
                 }
@@ -644,12 +648,18 @@ public class Boss {
         for (Job job : recommendJobs) {
             // 使用Playwright在新标签页中打开链接
             Page jobPage = PlaywrightUtil.getPageObject().context().newPage();
-            jobPage.navigate(homeUrl + job.getHref());
+            try {
+                jobPage.navigate(homeUrl + job.getHref());
+            } catch (Exception e) {
+                log.error("打开职位详情页超时或失败，已跳过该职位: {}，异常: {}", job.getHref(), e.getMessage());
+                jobPage.close();
+                continue;
+            }
 
             try {
                 // 等待聊天按钮出现
                 Locator chatButton = jobPage.locator(BossElementLocators.CHAT_BUTTON);
-                if (!chatButton.nth(0).isVisible(new Locator.IsVisibleOptions().setTimeout(5000))) {
+                if (!chatButton.nth(0).isVisible(new Locator.IsVisibleOptions().setTimeout(3000))) {
                     Locator errorElement = jobPage.locator(BossElementLocators.ERROR_CONTENT);
                     if (errorElement.isVisible() && errorElement.textContent().contains("异常访问")) {
                         jobPage.close();
@@ -747,12 +757,18 @@ public class Boss {
         for (Job job : jobs) {
             // 使用Playwright在新标签页中打开链接
             Page jobPage = PlaywrightUtil.getPageObject().context().newPage();
-            jobPage.navigate(homeUrl + job.getHref());
+            try {
+                jobPage.navigate(homeUrl + job.getHref());
+            } catch (Exception e) {
+                log.error("打开职位详情页超时或失败，已跳过该职位: {}，异常: {}", job.getHref(), e.getMessage());
+                jobPage.close();
+                continue;
+            }
 
             try {
                 // 等待聊天按钮出现
                 Locator chatButton = jobPage.locator(BossElementLocators.CHAT_BUTTON);
-                if (!chatButton.nth(0).isVisible(new Locator.IsVisibleOptions().setTimeout(5000))) {
+                if (!chatButton.nth(0).isVisible(new Locator.IsVisibleOptions().setTimeout(3000))) {
                     Locator errorElement = jobPage.locator(BossElementLocators.ERROR_CONTENT);
                     if (errorElement.isVisible() && errorElement.textContent().contains("异常访问")) {
                         jobPage.close();
@@ -790,8 +806,11 @@ public class Boss {
             }
 
             if (config.getKeyFilter()) {
-                if (!job.getJobKeywordTag().toLowerCase().contains(keyword.toLowerCase())) {
-                    log.info("已过滤：岗位【{}】描述不包含关键字【{}】", job.getJobName(), keyword);
+                String jobNameLower = job.getJobName().toLowerCase();
+                String jobKeywordTagLower = job.getJobKeywordTag() != null ? job.getJobKeywordTag().toLowerCase() : "";
+                String keywordLower = keyword.toLowerCase();
+                if (!(jobNameLower.contains(keywordLower) || jobKeywordTagLower.contains(keywordLower))) {
+                    log.info("已过滤：岗位【{}】名称和描述均不包含关键字【{}】", job.getJobName(), keyword);
                     jobPage.close();
                     continue;
                 }
@@ -866,28 +885,19 @@ public class Boss {
         boolean debug = config.getDebugger();
 
         // 每次点击沟通前都休眠5秒 减少调用频率
-        PlaywrightUtil.sleep(5);
+        PlaywrightUtil.sleep(2);
 
         if (chatBtn.isVisible() && "立即沟通".equals(chatBtn.textContent().replaceAll("\\s+", ""))) {
-            String waitTime = config.getWaitTime();
-            int sleepTime = 10; // 默认等待10秒
-
-            if (waitTime != null) {
-                try {
-                    sleepTime = Integer.parseInt(waitTime);
-                } catch (NumberFormatException e) {
-                    log.error("等待时间转换异常！！");
-                }
-            }
-
-            PlaywrightUtil.sleep(sleepTime);
+            // 优化：缩短等待时间为2秒
+            PlaywrightUtil.sleep(2);
 
             AiFilter filterResult = null;
             if (config.getEnableAI() && keyword != null) {
                 // AI检测岗位是否匹配
-                Locator jdElement = jobPage.locator(BossElementLocators.JOB_DESCRIPTION);
-                if (jdElement.isVisible()) {
-                    String jd = jdElement.textContent();
+                Locator jdElements = jobPage.locator(BossElementLocators.JOB_DESCRIPTION);
+                if (jdElements.count() > 0) {
+                    // 只取第一个岗位描述
+                    String jd = jdElements.nth(0).textContent();
                     filterResult = checkJob(keyword, job.getJobName(), jd);
                 }
             }
@@ -915,10 +925,27 @@ public class Boss {
                 } catch (Exception ignore) {
                 }
 
-                // 对话文本录入框
-                Locator input = jobPage.locator(BossElementLocators.CHAT_INPUT);
-                input = input.nth(0);
-                if (input.isVisible(new Locator.IsVisibleOptions().setTimeout(10000))) {
+                // 对话文本录入框，增加多次重试和多选择器兜底
+                Locator input = null;
+                int retry = 0;
+                while (retry < 5) {
+                    try {
+                        input = jobPage.locator(BossElementLocators.CHAT_INPUT);
+                        if (input.count() > 0 && input.nth(0).isVisible(new Locator.IsVisibleOptions().setTimeout(1500))) {
+                            input = input.nth(0);
+                            break;
+                        }
+                        // 兜底尝试常见输入框
+                        input = jobPage.locator("input, textarea, .chat-input");
+                        if (input.count() > 0 && input.nth(0).isVisible(new Locator.IsVisibleOptions().setTimeout(1500))) {
+                            input = input.nth(0);
+                            break;
+                        }
+                    } catch (Exception ignore) {}
+                    PlaywrightUtil.sleep(2); // 等待2秒再试
+                    retry++;
+                }
+                if (input != null && input.isVisible(new Locator.IsVisibleOptions().setTimeout(1500))) {
                     input.click();
                     Locator dialogElement = jobPage.locator(BossElementLocators.DIALOG_CONTAINER);
                     dialogElement = dialogElement.nth(0);
@@ -927,25 +954,51 @@ public class Boss {
                         return 0;
                     }
 
-                    input.fill(
-                            filterResult != null && filterResult.getResult()
-                                    && isValidString(filterResult.getMessage())
-                                    ? filterResult.getMessage()
-                                    : config.getSayHi().replaceAll("\\r|\\n", ""));
+                    String sentMsg = filterResult != null && filterResult.getResult() && isValidString(filterResult.getMessage()) ? filterResult.getMessage() : config.getSayHi().replaceAll("\r|\n", "");
+                    input.fill(sentMsg);
 
-                    Locator sendBtn = jobPage.locator(BossElementLocators.SEND_BUTTON);
-                    sendBtn = sendBtn.nth(0);
-                    if (sendBtn.isVisible(new Locator.IsVisibleOptions().setTimeout(5000))) {
+                    // 定位发送按钮，增加多次重试和多选择器兜底
+                    Locator sendBtn = null;
+                    int retrySend = 0;
+                    String[] selectors = {
+                        BossElementLocators.SEND_BUTTON,
+                        "button[type='submit']",
+                        ".btn-send",
+                        ".chat-btn-send",
+                        "button:has-text('发送')",
+                        "button:has-text('回车')",
+                        "button"
+                    };
+                    while (retrySend < 5) {
+                        boolean found = false;
+                        for (String selector : selectors) {
+                            try {
+                                Locator btns = jobPage.locator(selector);
+                                int count = btns.count();
+                                for (int i = 0; i < count; i++) {
+                                    Locator btn = btns.nth(i);
+                                    if (btn.isVisible(new Locator.IsVisibleOptions().setTimeout(1000))) {
+                                        String text = btn.textContent();
+                                        if (text != null && (text.contains("发送") || text.contains("回车") || text.contains("Send"))) {
+                                            sendBtn = btn;
+                                            found = true;
+                                            break;
+                                        }
+                                    }
+                                }
+                                if (found) break;
+                            } catch (Exception ignore) {}
+                        }
+                        if (sendBtn != null && sendBtn.isVisible(new Locator.IsVisibleOptions().setTimeout(1000))) {
+                            break;
+                        }
+                        PlaywrightUtil.sleep(2);
+                        retrySend++;
+                    }
+                    if (sendBtn != null && sendBtn.isVisible(new Locator.IsVisibleOptions().setTimeout(1000))) {
                         if (!debug) {
-                            // 点击发送打招呼内容
                             sendBtn.click();
                         }
-                        PlaywrightUtil.sleep(5);
-
-                        String recruiter = job.getRecruiter();
-                        String company = job.getCompanyName();
-                        String position = job.getJobName() + " " + job.getSalary() + " " + job.getJobArea();
-
                         // 发送简历图片
                         Boolean imgResume = false;
                         if (config.getSendImgResume()) {
@@ -973,16 +1026,20 @@ public class Boss {
                                 log.error("获取简历图片路径失败: {}", e.getMessage());
                             }
                         }
-
                         PlaywrightUtil.sleep(2);
+                        String recruiter = job.getRecruiter();
+                        String company = job.getCompanyName();
+                        String position = job.getJobName() + " " + job.getSalary() + " " + job.getJobArea();
                         log.info("正在投递【{}】公司，【{}】职位，招聘官:【{}】{}", company, position, recruiter,
                                 imgResume ? "发送图片简历成功！" : "");
                         resultList.add(job);
+                        if (!debug) {
+                            jobPage.close();
+                        }
                     } else {
                         log.info("没有定位到对话框回车按钮");
                     }
                 } else {
-                    // 可能加载超过5秒，现已改为10秒
                     log.info("没有定位到对话框文本录入框");
                 }
             } catch (Exception e) {
@@ -1178,7 +1235,7 @@ public class Boss {
             String outerHtml = activeTimeElement.first().evaluate("el => el.outerHTML").toString();
 
 
-            if (activeTimeElement.isVisible(new Locator.IsVisibleOptions().setTimeout(5000))) {
+            if (activeTimeElement.isVisible(new Locator.IsVisibleOptions().setTimeout(3000))) {
                 String activeTimeText = activeTimeElement.textContent();
                 log.info("{}：{}", getCompanyAndHR(page).replaceAll("\\s+", ""), activeTimeText);
                 // 如果 HR 活跃状态符合预期，则返回 true
