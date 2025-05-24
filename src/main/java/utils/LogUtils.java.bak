@@ -1,0 +1,396 @@
+package utils;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicLong;
+import java.util.function.Supplier;
+
+/**
+ * 企业级日志工具类
+ * 提供结构化日志、MDC上下文管理、性能监控、业务统计等功能
+ * 
+ * @author loks666
+ * 项目链接: <a href="https://github.com/loks666/get_jobs">https://github.com/loks666/get_jobs</a>
+ */
+public class LogUtils {
+    
+    // 专用日志记录器
+    private static final Logger BUSINESS_LOGGER = LoggerFactory.getLogger("BUSINESS_STATS");
+    private static final Logger PERFORMANCE_LOGGER = LoggerFactory.getLogger("PERFORMANCE");
+    private static final Logger SECURITY_LOGGER = LoggerFactory.getLogger("SECURITY");
+    
+    private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
+    
+    // 性能统计
+    private static final Map<String, AtomicLong> COUNTERS = new ConcurrentHashMap<>();
+    private static final Map<String, Long> TIMERS = new ConcurrentHashMap<>();
+    
+    // MDC上下文管理
+    public static class Context {
+        public static void setPlatform(String platform) {
+            MDC.put("platform", platform);
+        }
+        
+        public static void setAction(String action) {
+            MDC.put("action", action);
+        }
+        
+        public static void setJobId(String jobId) {
+            MDC.put("jobId", jobId);
+        }
+        
+        public static void setCompany(String company) {
+            MDC.put("company", company);
+        }
+        
+        public static void setPosition(String position) {
+            MDC.put("position", position);
+        }
+        
+        public static void setUserId(String userId) {
+            MDC.put("userId", userId);
+        }
+        
+        public static void setSessionId(String sessionId) {
+            MDC.put("sessionId", sessionId);
+        }
+        
+        public static void setRequestId(String requestId) {
+            MDC.put("requestId", requestId);
+        }
+        
+        public static void clear() {
+            MDC.clear();
+        }
+        
+        public static void clearField(String key) {
+            MDC.remove(key);
+        }
+        
+        public static String get(String key) {
+            return MDC.get(key);
+        }
+    }
+    
+    // 业务统计日志
+    public static class Business {
+        
+        /**
+         * 记录岗位投递事件
+         */
+        public static void logJobDelivery(String platform, String company, String position, 
+                                         String salary, boolean success, String reason) {
+            Map<String, Object> event = new HashMap<>();
+            event.put("eventType", "JOB_DELIVERY");
+            event.put("platform", platform);
+            event.put("company", company);
+            event.put("position", position);
+            event.put("salary", salary);
+            event.put("success", success);
+            event.put("reason", reason);
+            event.put("timestamp", System.currentTimeMillis());
+            
+            Context.setPlatform(platform);
+            Context.setCompany(company);
+            Context.setPosition(position);
+            Context.setAction("DELIVERY");
+            
+            BUSINESS_LOGGER.info(toJson(event));
+        }
+        
+        /**
+         * 记录过滤事件
+         */
+        public static void logFilter(String platform, String filterType, String filterValue, 
+                                   String company, String position, String reason) {
+            Map<String, Object> event = new HashMap<>();
+            event.put("eventType", "JOB_FILTER");
+            event.put("platform", platform);
+            event.put("filterType", filterType);
+            event.put("filterValue", filterValue);
+            event.put("company", company);
+            event.put("position", position);
+            event.put("reason", reason);
+            event.put("timestamp", System.currentTimeMillis());
+            
+            Context.setPlatform(platform);
+            Context.setCompany(company);
+            Context.setPosition(position);
+            Context.setAction("FILTER");
+            
+            BUSINESS_LOGGER.info(toJson(event));
+        }
+        
+        /**
+         * 记录黑名单事件
+         */
+        public static void logBlacklist(String type, String name, String reason, int days) {
+            Map<String, Object> event = new HashMap<>();
+            event.put("eventType", "BLACKLIST_ADD");
+            event.put("type", type);
+            event.put("name", name);
+            event.put("reason", reason);
+            event.put("days", days);
+            event.put("timestamp", System.currentTimeMillis());
+            
+            Context.setAction("BLACKLIST");
+            
+            BUSINESS_LOGGER.info(toJson(event));
+        }
+        
+        /**
+         * 记录AI分析事件
+         */
+        public static void logAIAnalysis(String company, String position, double score, 
+                                       boolean recommended, String analysis) {
+            Map<String, Object> event = new HashMap<>();
+            event.put("eventType", "AI_ANALYSIS");
+            event.put("company", company);
+            event.put("position", position);
+            event.put("score", score);
+            event.put("recommended", recommended);
+            event.put("analysis", analysis);
+            event.put("timestamp", System.currentTimeMillis());
+            
+            Context.setCompany(company);
+            Context.setPosition(position);
+            Context.setAction("AI_ANALYSIS");
+            
+            BUSINESS_LOGGER.info(toJson(event));
+        }
+        
+        /**
+         * 记录会话统计
+         */
+        public static void logSessionStats(String platform, int totalJobs, int deliveredJobs, 
+                                         int filteredJobs, long duration) {
+            Map<String, Object> event = new HashMap<>();
+            event.put("eventType", "SESSION_STATS");
+            event.put("platform", platform);
+            event.put("totalJobs", totalJobs);
+            event.put("deliveredJobs", deliveredJobs);
+            event.put("filteredJobs", filteredJobs);
+            event.put("duration", duration);
+            event.put("successRate", totalJobs > 0 ? (double)deliveredJobs / totalJobs : 0.0);
+            event.put("timestamp", System.currentTimeMillis());
+            
+            Context.setPlatform(platform);
+            Context.setAction("SESSION_SUMMARY");
+            
+            BUSINESS_LOGGER.info(toJson(event));
+        }
+    }
+    
+    // 性能监控日志
+    public static class Performance {
+        
+        /**
+         * 开始计时
+         */
+        public static void startTimer(String operation) {
+            TIMERS.put(Thread.currentThread().getName() + "_" + operation, System.currentTimeMillis());
+        }
+        
+        /**
+         * 结束计时并记录
+         */
+        public static void endTimer(String operation) {
+            String key = Thread.currentThread().getName() + "_" + operation;
+            Long startTime = TIMERS.remove(key);
+            if (startTime != null) {
+                long duration = System.currentTimeMillis() - startTime;
+                logPerformance(operation, duration);
+            }
+        }
+        
+        /**
+         * 使用函数式接口计时执行
+         */
+        public static <T> T timeOperation(String operation, Supplier<T> supplier) {
+            long startTime = System.currentTimeMillis();
+            try {
+                return supplier.get();
+            } finally {
+                long duration = System.currentTimeMillis() - startTime;
+                logPerformance(operation, duration);
+            }
+        }
+        
+        /**
+         * 记录性能指标
+         */
+        public static void logPerformance(String operation, long duration) {
+            Map<String, Object> event = new HashMap<>();
+            event.put("eventType", "PERFORMANCE");
+            event.put("operation", operation);
+            event.put("duration", duration);
+            event.put("thread", Thread.currentThread().getName());
+            event.put("timestamp", System.currentTimeMillis());
+            
+            // 记录内存使用情况
+            Runtime runtime = Runtime.getRuntime();
+            event.put("memoryUsed", runtime.totalMemory() - runtime.freeMemory());
+            event.put("memoryTotal", runtime.totalMemory());
+            event.put("memoryMax", runtime.maxMemory());
+            
+            Context.setAction("PERFORMANCE");
+            
+            PERFORMANCE_LOGGER.info(toJson(event));
+        }
+        
+        /**
+         * 记录内存使用情况
+         */
+        public static void logMemoryUsage(String checkpoint) {
+            Runtime runtime = Runtime.getRuntime();
+            Map<String, Object> event = new HashMap<>();
+            event.put("eventType", "MEMORY_USAGE");
+            event.put("checkpoint", checkpoint);
+            event.put("usedMemory", runtime.totalMemory() - runtime.freeMemory());
+            event.put("totalMemory", runtime.totalMemory());
+            event.put("maxMemory", runtime.maxMemory());
+            event.put("freeMemory", runtime.freeMemory());
+            event.put("usagePercentage", (double)(runtime.totalMemory() - runtime.freeMemory()) / runtime.maxMemory() * 100);
+            event.put("timestamp", System.currentTimeMillis());
+            
+            Context.setAction("MEMORY_CHECK");
+            
+            PERFORMANCE_LOGGER.info(toJson(event));
+        }
+    }
+    
+    // 安全审计日志
+    public static class Security {
+        
+        /**
+         * 记录登录事件
+         */
+        public static void logLogin(String platform, String username, boolean success, String ip) {
+            Map<String, Object> event = new HashMap<>();
+            event.put("eventType", "LOGIN");
+            event.put("platform", platform);
+            event.put("username", username);
+            event.put("success", success);
+            event.put("ip", ip);
+            event.put("timestamp", System.currentTimeMillis());
+            
+            Context.setPlatform(platform);
+            Context.setAction("LOGIN");
+            Context.setUserId(username);
+            
+            SECURITY_LOGGER.info(toJson(event));
+        }
+        
+        /**
+         * 记录风控检测事件
+         */
+        public static void logRiskControl(String platform, String riskType, String details, String action) {
+            Map<String, Object> event = new HashMap<>();
+            event.put("eventType", "RISK_CONTROL");
+            event.put("platform", platform);
+            event.put("riskType", riskType);
+            event.put("details", details);
+            event.put("action", action);
+            event.put("timestamp", System.currentTimeMillis());
+            
+            Context.setPlatform(platform);
+            Context.setAction("RISK_CONTROL");
+            
+            SECURITY_LOGGER.info(toJson(event));
+        }
+        
+        /**
+         * 记录异常行为
+         */
+        public static void logAnomalous(String platform, String behavior, String details) {
+            Map<String, Object> event = new HashMap<>();
+            event.put("eventType", "ANOMALOUS_BEHAVIOR");
+            event.put("platform", platform);
+            event.put("behavior", behavior);
+            event.put("details", details);
+            event.put("timestamp", System.currentTimeMillis());
+            
+            Context.setPlatform(platform);
+            Context.setAction("ANOMALY");
+            
+            SECURITY_LOGGER.info(toJson(event));
+        }
+    }
+    
+    // 计数器工具
+    public static class Counter {
+        
+        /**
+         * 增加计数
+         */
+        public static void increment(String counterName) {
+            COUNTERS.computeIfAbsent(counterName, k -> new AtomicLong(0)).incrementAndGet();
+        }
+        
+        /**
+         * 增加指定值
+         */
+        public static void add(String counterName, long value) {
+            COUNTERS.computeIfAbsent(counterName, k -> new AtomicLong(0)).addAndGet(value);
+        }
+        
+        /**
+         * 获取计数值
+         */
+        public static long get(String counterName) {
+            return COUNTERS.getOrDefault(counterName, new AtomicLong(0)).get();
+        }
+        
+        /**
+         * 重置计数
+         */
+        public static void reset(String counterName) {
+            COUNTERS.put(counterName, new AtomicLong(0));
+        }
+        
+        /**
+         * 获取所有计数器
+         */
+        public static Map<String, Long> getAllCounters() {
+            Map<String, Long> result = new HashMap<>();
+            COUNTERS.forEach((k, v) -> result.put(k, v.get()));
+            return result;
+        }
+    }
+    
+    // 工具方法
+    private static String toJson(Object obj) {
+        try {
+            return OBJECT_MAPPER.writeValueAsString(obj);
+        } catch (Exception e) {
+            return obj.toString();
+        }
+    }
+    
+    /**
+     * 清理资源（程序退出时调用）
+     */
+    public static void cleanup() {
+        Context.clear();
+        TIMERS.clear();
+        COUNTERS.clear();
+    }
+    
+    /**
+     * 打印统计摘要
+     */
+    public static void printStatsSummary() {
+        Map<String, Object> summary = new HashMap<>();
+        summary.put("eventType", "STATS_SUMMARY");
+        summary.put("counters", Counter.getAllCounters());
+        summary.put("timestamp", System.currentTimeMillis());
+        
+        BUSINESS_LOGGER.info(toJson(summary));
+    }
+} 

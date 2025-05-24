@@ -14,28 +14,22 @@ public class BossElementLocators {
     /**
      * 搜索结果页相关元素
      */
-    // 用于判断岗位列表区块是否加载完成（普通岗位搜索页面）
+    // 用于判断岗位列表区块是否加载完成
     public static final String JOB_LIST_CONTAINER = "//div[@class='job-list-container']";
-    // 用于判断岗位列表区块是否加载完成（兼容多种页面结构）
-    public static final String JOB_LIST_CONTAINER_ALT = ".job-list-container, .job-list-box, .search-job-result, ul.job-list-box, ul.job-list";
     // 定位一个岗位卡
     public static final String JOB_CARD_BOX = "li.job-card-box";
 
     /**
      * 岗位列表
      */
-    // 定位所有岗位卡片，用于获取当前获取到的岗位总数（推荐岗位）
+    // 定位所有岗位卡片，用于获取当前获取到的岗位总数
     public static final String JOB_LIST_SELECTOR = "ul.rec-job-list li.job-card-box";
-    // 定位所有岗位卡片（普通岗位搜索页面）
-    public static final String JOB_LIST_SELECTOR_SEARCH = "ul.job-list-box li.job-card-wrapper, ul.job-list li.job-card-wrapper, .job-list-box .job-card-wrapper, .job-list .job-card-wrapper";
     // 岗位名称
     public static final String JOB_NAME = "a.job-name";
     // 公司名称
     public static final String COMPANY_NAME = "span.boss-name";
     // 公司区域
     public static final String JOB_AREA = "span.company-location";
-    // 岗位薪资
-    public static final String JOB_SALARY = "span.salary";
     // 岗位标签
     public static final String TAG_LIST = "ul.tag-list li";
 
@@ -81,16 +75,4 @@ public class BossElementLocators {
     public static final String PAGE_HEADER = "//h1";
     public static final String ERROR_PAGE_LOGIN = "//a[@ka='403_login']";
 
-    // 详情页公司名称多选择器兜底
-    public static final String[] COMPANY_NAME_SELECTORS = {
-        ".company-name", ".company", "span[class*='company']", "a.company-link", "div.company-info__name", "div.info-company .name", "div.company-title", "div.company-content .name", "div.company-content .company-name"
-    };
-    // 详情页岗位名称多选择器兜底
-    public static final String[] JOB_NAME_SELECTORS = {
-        ".job-name", ".job-title", "h1", "span[class*='job-name']"
-    };
-    // 详情页地区多选择器兜底
-    public static final String[] JOB_AREA_SELECTORS = {
-        ".job-area", ".gray", "span[class*='area']", "div.info-primary .location", "div.job-location", "div.company-info__address"
-    };
 }

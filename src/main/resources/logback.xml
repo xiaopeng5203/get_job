@@ -1,32 +1,163 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configuration>
+<configuration scan="true" scanPeriod="30 seconds">
+    <!-- 属性定义 -->
     <property name="log.path" value="./target/logs"/>
-    <property name="server.name" value="job"/>
-
-    <!-- 设置日志格式，包含日期、线程、日志级别、类名、方法名、文件和行号 -->
-    <property name="log.pattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"/>
-<!--    <property name="log.pattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg (%caller{1})%n"/>-->
-    <property name="log.file" value="${log.path}/${server.name}.%d{yyyy-MM-dd}.log"/>
-    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <property name="server.name" value="job-automation"/>
+    <property name="app.name" value="get-jobs"/>
+    
+    <!-- 日志格式定义 -->
+    <property name="console.pattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"/>
+    <property name="file.pattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} [%X{platform}] [%X{action}] [%X{jobId}] - %msg%n"/>
+    <property name="json.pattern" value='{"timestamp":"%d{yyyy-MM-dd HH:mm:ss.SSS}","level":"%level","thread":"%thread","logger":"%logger","platform":"%X{platform}","action":"%X{action}","jobId":"%X{jobId}","company":"%X{company}","position":"%X{position}","message":"%msg","exception":"%ex"}%n'/>
+    
+    <!-- 控制台Appender - 简化输出 -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <charset>UTF-8</charset>
-            <pattern>${log.pattern}</pattern>
+            <pattern>${console.pattern}</pattern>
         </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
     </appender>
-
-    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    
+    <!-- 文件Appender - 全量日志 -->
+    <appender name="FILE_ALL" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/${server.name}.log</file>
         <encoder>
             <charset>UTF-8</charset>
-            <pattern>${log.pattern}</pattern>
+            <pattern>${file.pattern}</pattern>
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${log.file}</fileNamePattern>
+            <fileNamePattern>${log.path}/${server.name}.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+            <totalSizeCap>10GB</totalSizeCap>
+        </rollingPolicy>
+    </appender>
+    
+    <!-- 错误日志文件 -->
+    <appender name="FILE_ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/${server.name}-error.log</file>
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>${file.pattern}</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.path}/${server.name}-error.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>90</maxHistory>
+        </rollingPolicy>
+    </appender>
+    
+    <!-- 业务日志文件 - 投递统计 -->
+    <appender name="FILE_BUSINESS" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/${server.name}-business.log</file>
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>${json.pattern}</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.path}/${server.name}-business.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>90</maxHistory>
+        </rollingPolicy>
+    </appender>
+    
+    <!-- 性能监控日志文件 -->
+    <appender name="FILE_PERFORMANCE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/${server.name}-performance.log</file>
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>${json.pattern}</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.path}/${server.name}-performance.%d{yyyy-MM-dd}.log</fileNamePattern>
             <maxHistory>30</maxHistory>
         </rollingPolicy>
     </appender>
-
+    
+    <!-- 安全审计日志文件 -->
+    <appender name="FILE_SECURITY" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/${server.name}-security.log</file>
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>${json.pattern}</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.path}/${server.name}-security.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>365</maxHistory>
+        </rollingPolicy>
+    </appender>
+    
+    <!-- 异步Appender - 提升性能 -->
+    <appender name="ASYNC_FILE" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="FILE_ALL"/>
+        <queueSize>1024</queueSize>
+        <discardingThreshold>20</discardingThreshold>
+        <maxFlushTime>1000</maxFlushTime>
+        <neverBlock>true</neverBlock>
+    </appender>
+    
+    <!-- 异步业务日志 -->
+    <appender name="ASYNC_BUSINESS" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="FILE_BUSINESS"/>
+        <queueSize>512</queueSize>
+        <neverBlock>true</neverBlock>
+    </appender>
+    
+    <!-- 分模块日志配置 -->
+    <!-- Boss平台日志 -->
+    <logger name="boss" level="INFO" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="ASYNC_FILE"/>
+        <appender-ref ref="ASYNC_BUSINESS"/>
+        <appender-ref ref="FILE_ERROR"/>
+    </logger>
+    
+    <!-- 业务统计日志 -->
+    <logger name="BUSINESS_STATS" level="INFO" additivity="false">
+        <appender-ref ref="ASYNC_BUSINESS"/>
+    </logger>
+    
+    <!-- 性能监控日志 -->
+    <logger name="PERFORMANCE" level="INFO" additivity="false">
+        <appender-ref ref="FILE_PERFORMANCE"/>
+    </logger>
+    
+    <!-- 安全审计日志 -->
+    <logger name="SECURITY" level="INFO" additivity="false">
+        <appender-ref ref="FILE_SECURITY"/>
+    </logger>
+    
+    <!-- AI服务日志 -->
+    <logger name="ai" level="DEBUG" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="ASYNC_FILE"/>
+    </logger>
+    
+    <!-- Playwright工具日志 -->
+    <logger name="utils.PlaywrightUtil" level="DEBUG" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="ASYNC_FILE"/>
+    </logger>
+    
+    <!-- 第三方库日志级别控制 -->
+    <logger name="com.microsoft.playwright" level="WARN"/>
+    <logger name="org.openqa.selenium" level="WARN"/>
+    <logger name="io.netty" level="WARN"/>
+    <logger name="org.apache.http" level="WARN"/>
+    
+    <!-- 根日志配置 -->
     <root level="INFO">
-        <appender-ref ref="STDOUT"/>
-        <appender-ref ref="FILE"/>
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="ASYNC_FILE"/>
+        <appender-ref ref="FILE_ERROR"/>
     </root>
+    
+    <!-- JMX监控 -->
+    <jmxConfigurator/>
+    
 </configuration>

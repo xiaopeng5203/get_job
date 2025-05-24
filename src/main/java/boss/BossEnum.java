@@ -106,9 +106,6 @@ public class BossEnum {
         CHENGMAI("澄迈", "101311200"),
         CHANGJIANG("昌江黎族自治县", "101311500"),
         DAQING("大庆", "101050800"),
-        DAXING_ANLING("大兴安岭地区", "101051300"),
-        DALIAN("大连", "101070200"),
-        DANDONG("丹东", "101070600"),
         DATONG("大同", "101100200"),
         DEZHOU("德州", "101120400"),
         DONGYING("东营", "101121200"),
@@ -188,7 +185,6 @@ public class BossEnum {
         JINCHENG("晋城", "101100600"),
         JINAN("济南", "101120100"),
         JINING("济宁", "101120700"),
-        JINCHANG("金昌", "101160600"),
         JIUQUAN("酒泉", "101160800"),
         JIAYUGUAN("嘉峪关", "101161200"),
         JIAOZUO("焦作", "101181100"),
@@ -484,6 +480,10 @@ public class BossEnum {
         Salary(String name, String code) {
             this.name = name;
             this.code = code;
+        }
+
+        public String getCode() {
+            return code;
         }
 
         @JsonCreator

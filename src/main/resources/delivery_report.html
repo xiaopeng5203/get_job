@@ -1,0 +1,6574 @@
+<!DOCTYPE html>
+<html lang='zh-CN'>
+<head>
+<meta charset='UTF-8'>
+<title>投递记录报告</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
+.container { max-width: 1200px; margin: 0 auto; }
+.header { text-align: center; margin-bottom: 40px; }
+.header h1 { color: white; font-size: 2.5em; margin-bottom: 10px; text-shadow: 0 2px 4px rgba(0,0,0,0.3); }
+.header .subtitle { color: rgba(255,255,255,0.9); font-size: 1.1em; }
+.stats { display: flex; justify-content: center; gap: 30px; margin-bottom: 40px; }
+.stat-card { background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); border-radius: 15px; padding: 20px; text-align: center; min-width: 120px; }
+.stat-number { font-size: 2em; font-weight: bold; color: white; }
+.stat-label { color: rgba(255,255,255,0.8); margin-top: 5px; }
+.timeline { position: relative; }
+.timeline::before { content: ''; position: absolute; left: 30px; top: 0; bottom: 0; width: 2px; background: rgba(255,255,255,0.3); }
+.delivery-card { position: relative; margin-bottom: 30px; margin-left: 70px; background: white; border-radius: 15px; padding: 25px; box-shadow: 0 8px 25px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.delivery-card:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(0,0,0,0.15); }
+.time-dot { position: absolute; left: -55px; top: 25px; width: 20px; height: 20px; background: #4CAF50; border-radius: 50%; border: 4px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+.time-label { position: absolute; left: -140px; top: 20px; background: rgba(255,255,255,0.9); padding: 5px 10px; border-radius: 8px; font-size: 0.85em; color: #666; white-space: nowrap; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+.card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; }
+.job-info h3 { color: #2c3e50; font-size: 1.4em; margin-bottom: 5px; }
+.company-name { color: #3498db; font-size: 1.1em; font-weight: 500; }
+.salary-badge { background: linear-gradient(45deg, #ff6b6b, #ee5a24); color: white; padding: 8px 15px; border-radius: 20px; font-weight: bold; font-size: 0.9em; }
+.card-content { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+.info-item { display: flex; align-items: center; padding: 10px; background: #f8f9fa; border-radius: 8px; }
+.info-icon { width: 20px; height: 20px; margin-right: 10px; }
+.info-label { font-weight: 500; color: #666; margin-right: 8px; }
+.info-value { color: #2c3e50; }
+@media (max-width: 768px) {
+  .container { padding: 10px; }
+  .delivery-card { margin-left: 50px; padding: 20px; }
+  .card-content { grid-template-columns: 1fr; gap: 10px; }
+  .time-label { display: none; }
+  .stats { flex-direction: column; align-items: center; gap: 15px; }
+}
+</style>
+</head>
+<body>
+<div class='container'>
+<div class='header'>
+<h1>📋 投递记录报告</h1>
+<div class='subtitle'>Boss直聘自动投递记录 · 数据统计与分析</div>
+</div>
+<div class='stats'>
+<div class='stat-card'>
+<div class='stat-number'>283</div>
+<div class='stat-label'>总投递数</div>
+</div>
+<div class='stat-card'>
+<div class='stat-number'>0</div>
+<div class='stat-label'>今日投递</div>
+</div>
+<div class='stat-card'>
+<div class='stat-number'>255</div>
+<div class='stat-label'>投递公司</div>
+</div>
+</div>
+<div class='timeline'>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-23 05:44:56</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>项目经理</h3>
+<div class='company-name'>🏢 龙腾大数据</div>
+</div>
+<div class='salary-badge'>💰 8-13K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>龙岩·新罗区·美域中央</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>陈女士 3日内活跃</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-23 05:44:21</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>团膳项目经理</h3>
+<div class='company-name'>🏢 广州上善</div>
+</div>
+<div class='salary-badge'>💰 8-13K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>龙岩·新罗区·龙岩学院</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>吴先生 刚刚活跃</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-23 05:43:49</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>公关项目经理</h3>
+<div class='company-name'>🏢 福建省静宇</div>
+</div>
+<div class='salary-badge'>💰 5-10K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>龙岩·新罗区·万宝广场</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>吴海荣 刚刚活跃</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-23 05:43:19</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>售前工程师</h3>
+<div class='company-name'>🏢 中兴电子</div>
+</div>
+<div class='salary-badge'>💰 6-10K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>龙岩</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>林女士 本周活跃</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-23 05:42:36</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>mes项目经理</h3>
+<div class='company-name'>🏢 奥利普奇智</div>
+</div>
+<div class='salary-badge'>💰 13-16K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>龙岩·新罗区·万达广场</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>谢女士 刚刚活跃</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-23 05:42:04</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>售前技术支持</h3>
+<div class='company-name'>🏢 中兴电子</div>
+</div>
+<div class='salary-badge'>💰 6-10K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>龙岩·新罗区·莲东</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>肖女士 3日内活跃</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-23 05:41:31</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>龙岩售前工程师（龙岩解决方案负责人）</h3>
+<div class='company-name'>🏢 福建省通信产业服务</div>
+</div>
+<div class='salary-badge'>💰 8-12K·13薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>龙岩·新罗区·莲东</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>黄女士 刚刚活跃</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-23 05:34:30</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>项目经理（香港）</h3>
+<div class='company-name'>🏢 华讯网络</div>
+</div>
+<div class='salary-badge'>💰 30-45K·14薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>香港</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>黄女士 本周活跃</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-23 05:33:50</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>【香港】金融项目经理</h3>
+<div class='company-name'>🏢 深圳市启捷软件服务</div>
+</div>
+<div class='salary-badge'>💰 30-50K·13薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>香港</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>田先生 刚刚活跃</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 19:03:42</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>互联网项目经理</h3>
+<div class='company-name'>🏢 明略云图</div>
+</div>
+<div class='salary-badge'>💰 10-15K·13薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·宝安区·西乡</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>明略云图 | 明略云图 | HR</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 19:02:35</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>解决方案工程师-出差</h3>
+<div class='company-name'>🏢 美高域科技开发</div>
+</div>
+<div class='salary-badge'>💰 15-20K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·龙华区·民治</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>美高域科 | 美高域科技开发 | 技开发</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 19:02:04</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>售前工程师</h3>
+<div class='company-name'>🏢 华声医疗</div>
+</div>
+<div class='salary-badge'>💰 10-15K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·南山区·西丽</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>华声医疗 | 华声医疗 | HR</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 19:01:31</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>高级解决方案专家</h3>
+<div class='company-name'>🏢 高度</div>
+</div>
+<div class='salary-badge'>💰 18-28K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·龙岗区</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>高度 | 高度 | 解决方案</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 18:59:06</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>项目总监-出差</h3>
+<div class='company-name'>🏢 厦门德莱科仪</div>
+</div>
+<div class='salary-badge'>💰 15-16K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·海沧区·新阳工业区</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>厦门德莱 | 厦门德莱科仪 | 科仪</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 18:58:32</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>项目经理（国家重点研发项目）</h3>
+<div class='company-name'>🏢 嘉庚创新实验室</div>
+</div>
+<div class='salary-badge'>💰 11-20K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·翔安区·厦大翔安校区</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>嘉庚创新 | 嘉庚创新实验室 | 实验室</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 18:57:53</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>研发部项目经理</h3>
+<div class='company-name'>🏢 奥佳华</div>
+</div>
+<div class='salary-badge'>💰 11-16K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·集美区·侨英</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>奥佳华 | 奥佳华 | hrbp</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 18:57:19</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>家装泥水工程项目总监</h3>
+<div class='company-name'>🏢 派达星</div>
+</div>
+<div class='salary-badge'>💰 15-20K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·湖里区·湖里大道</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>派达星 | 派达星 | 人力经理</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 18:56:47</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>项目经理</h3>
+<div class='company-name'>🏢 物之联</div>
+</div>
+<div class='salary-badge'>💰 12-18K·13薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·集美区·杏林</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>物之联 | 物之联 | 产品中心总经理</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 18:56:12</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>研发项目经理</h3>
+<div class='company-name'>🏢 锋迈半导体科技</div>
+</div>
+<div class='salary-badge'>💰 10-15K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·湖里区·禾山</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>锋迈半导 | 锋迈半导体科技 | 体科技</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 18:55:38</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>主程/项目经理</h3>
+<div class='company-name'>🏢 来玩科技</div>
+</div>
+<div class='salary-badge'>💰 25-35K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·思明区·软件园</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>来玩科技 | 来玩科技 | 招聘负责人</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 18:54:41</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>金蝶用友项目经理</h3>
+<div class='company-name'>🏢 容诚</div>
+</div>
+<div class='salary-badge'>💰 12-20K·13薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·湖里区·禾山</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>容诚 | 容诚 | 招聘专员</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 18:54:05</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>自动化项目经理</h3>
+<div class='company-name'>🏢 宏泰智能</div>
+</div>
+<div class='salary-badge'>💰 11-18K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·翔安区·马巷</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>宏泰智能 | 宏泰智能 | 人事</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 18:53:29</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>自动化项目经理-出差</h3>
+<div class='company-name'>🏢 紫金智信智控</div>
+</div>
+<div class='salary-badge'>💰 17-30K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·海沧区·未来海岸</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>紫金智信 | 紫金智信智控 | 智控</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 18:52:56</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>项目经理-出差</h3>
+<div class='company-name'>🏢 厦门瑞固科技有限公司</div>
+</div>
+<div class='salary-badge'>💰 12-15K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·集美区</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>厦门瑞固 | 厦门瑞固科技有限公司 | 科技有限公司</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 18:52:22</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>项目经理</h3>
+<div class='company-name'>🏢 中电科数智</div>
+</div>
+<div class='salary-badge'>💰 15-25K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·思明区·软件园</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>中电科数 | 中电科数智 | 智</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 18:51:48</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>项目经理</h3>
+<div class='company-name'>🏢 金牌厨柜</div>
+</div>
+<div class='salary-badge'>💰 10-15K·13薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·同安区·梧侣</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>金牌厨柜 | 金牌厨柜 | HRBP</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 18:51:09</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>项目经理</h3>
+<div class='company-name'>🏢 新诺电子</div>
+</div>
+<div class='salary-badge'>💰 12-16K·13薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·集美区·杏林</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>新诺电子 | 新诺电子 | 人力资源专员</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 18:50:03</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>AI智能机器人项目经理</h3>
+<div class='company-name'>🏢 弘汉光电</div>
+</div>
+<div class='salary-badge'>💰 18-20K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·翔安区·马巷</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>弘汉光电 | 弘汉光电 | 经理</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 18:49:30</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>IT产品项目经理</h3>
+<div class='company-name'>🏢 建发房地产集团总部</div>
+</div>
+<div class='salary-badge'>💰 15-22K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·思明区·会展中心</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>建发房地 | 建发房地产集团总部 | 产集团总部</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 18:48:57</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>研发项目经理</h3>
+<div class='company-name'>🏢 思泰克智能</div>
+</div>
+<div class='salary-badge'>💰 10-15K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·翔安区·马巷</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>思泰克智 | 思泰克智能 | 能</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 18:48:21</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>项目经理（智能制造行业）</h3>
+<div class='company-name'>🏢 微亚智能科技</div>
+</div>
+<div class='salary-badge'>💰 12-18K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·湖里区·禾山</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>微亚智能 | 微亚智能科技 | 科技</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 18:47:48</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>项目经理（熟悉机械设备生产、研发）-出差</h3>
+<div class='company-name'>🏢 大禾众邦</div>
+</div>
+<div class='salary-badge'>💰 20-30K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·集美区·灌口</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>大禾众邦 | 大禾众邦 | 行政经理</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 18:47:13</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>项目经理-出差</h3>
+<div class='company-name'>🏢 厦门竣铭科技</div>
+</div>
+<div class='salary-badge'>💰 12-17K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·集美区·后溪</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>厦门竣铭 | 厦门竣铭科技 | 科技</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 18:46:38</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>解决方案总监-出差</h3>
+<div class='company-name'>🏢 渊亭科技</div>
+</div>
+<div class='salary-badge'>💰 30-50K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·思明区·软件园</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>渊亭科技 | 渊亭科技 | 总经办主任</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 18:46:07</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>项目经理（新零售鞋服）</h3>
+<div class='company-name'>🏢 比升技术</div>
+</div>
+<div class='salary-badge'>💰 18-30K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·思明区·观音山</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>比升技术 | 比升技术 | HR</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 18:45:32</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>项目经理</h3>
+<div class='company-name'>🏢 国谷</div>
+</div>
+<div class='salary-badge'>💰 10-15K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·集美区·灌口</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>国谷 | 国谷 | 董事长</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 18:45:00</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>AI数据项目经理</h3>
+<div class='company-name'>🏢 真景科技</div>
+</div>
+<div class='salary-badge'>💰 10-15K·14薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·思明区·莲前</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>真景科技 | 真景科技 | HR</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 18:44:25</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>项目经理-出差</h3>
+<div class='company-name'>🏢 网智天元</div>
+</div>
+<div class='salary-badge'>💰 10-15K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·同安区</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>网智天元 | 网智天元 | 综合管理部总监</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 18:43:15</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>售前工程师-出差</h3>
+<div class='company-name'>🏢 交测</div>
+</div>
+<div class='salary-badge'>💰 13-15K·13薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·集美区·杏林</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>交测 | 交测 | 总经理</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 18:42:40</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>项目经理-出差</h3>
+<div class='company-name'>🏢 福建艾斯芸科技</div>
+</div>
+<div class='salary-badge'>💰 12-20K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·思明区·观音山</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>福建艾斯 | 福建艾斯芸科技 | 芸科技</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 18:42:08</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>研发项目经理</h3>
+<div class='company-name'>🏢 日立能源</div>
+</div>
+<div class='salary-badge'>💰 20-25K·14薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·翔安区·马巷</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>日立能源 | 日立能源 | 人才顾问</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 18:41:33</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>数字化供应链项目经理</h3>
+<div class='company-name'>🏢 宜众</div>
+</div>
+<div class='salary-badge'>💰 15-20K·15薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·思明区·观音山</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>宜众 | 宜众 | 招聘经理</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 18:40:57</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>硬件项目经理</h3>
+<div class='company-name'>🏢 麦克奥迪</div>
+</div>
+<div class='salary-badge'>💰 11-20K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·翔安区</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>麦克奥迪 | 麦克奥迪 | 招聘经理HR</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 18:40:21</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>项目经理</h3>
+<div class='company-name'>🏢 攸信技术</div>
+</div>
+<div class='salary-badge'>💰 10-15K·13薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·海沧区·东孚</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>攸信技术 | 攸信技术 | HR招聘</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 18:39:49</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>项目经理（物联网）-出差</h3>
+<div class='company-name'>🏢 思源数智</div>
+</div>
+<div class='salary-badge'>💰 12-18K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·思明区·莲前</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>思源数智 | 思源数智 | HR</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 18:39:15</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>项目经理-出差</h3>
+<div class='company-name'>🏢 赛恩领动</div>
+</div>
+<div class='salary-badge'>💰 13-23K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·集美区·杏林</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>赛恩领动 | 赛恩领动 | 人力</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 18:38:14</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>解决方案工程师</h3>
+<div class='company-name'>🏢 熵基科技</div>
+</div>
+<div class='salary-badge'>💰 10-15K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·集美区·杏林</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>熵基科技 | 熵基科技 | 部门经理</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 18:37:44</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>项目经理</h3>
+<div class='company-name'>🏢 厦门海尼新创生物科技</div>
+</div>
+<div class='salary-badge'>💰 12-24K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·集美区·侨英</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>厦门海尼 | 厦门海尼新创生物科技 | 新创生物科技</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 18:37:14</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>APJM（大客户项目经理）</h3>
+<div class='company-name'>🏢 立达信</div>
+</div>
+<div class='salary-badge'>💰 11-18K·13薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·湖里区·禾山</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>立达信 | 立达信 | HR</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 18:36:39</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>项目经理</h3>
+<div class='company-name'>🏢 立达信绿色照明</div>
+</div>
+<div class='salary-badge'>💰 10-15K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·湖里区·五缘湾</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>立达信绿 | 立达信绿色照明 | 色照明</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 18:36:06</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>AI信息化项目经理</h3>
+<div class='company-name'>🏢 北京衔远</div>
+</div>
+<div class='salary-badge'>💰 15-30K·15薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·思明区·莲花</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>北京衔远 | 北京衔远 | 部门负责人</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 18:35:33</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>设备交付项目经理（工作地点可选择）</h3>
+<div class='company-name'>🏢 微亚智能科技</div>
+</div>
+<div class='salary-badge'>💰 15-30K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·湖里区·禾山</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>微亚智能 | 微亚智能科技 | 科技</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 18:35:00</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>KA项目经理</h3>
+<div class='company-name'>🏢 京东物流</div>
+</div>
+<div class='salary-badge'>💰 15-25K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·同安区·后田海鲜船坞</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>京东物流 | 京东物流 | 华南销售总监</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 18:33:35</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>项目经理/主管（Base厦门）</h3>
+<div class='company-name'>🏢 优财云链</div>
+</div>
+<div class='salary-badge'>💰 12-20K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·集美区·杏林</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>优财云链 | 优财云链 | HRBP</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 18:32:59</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>实施项目总监</h3>
+<div class='company-name'>🏢 厦门精配</div>
+</div>
+<div class='salary-badge'>💰 15-20K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·思明区·软件园</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>厦门精配 | 厦门精配 | HRM</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 18:32:24</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>Project Manager/项目经理</h3>
+<div class='company-name'>🏢 日立能源</div>
+</div>
+<div class='salary-badge'>💰 15-20K·16薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·翔安区·马巷</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>日立能源 | 日立能源 | 招聘顾问</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 18:31:49</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>硬件项目经理（英语熟练）</h3>
+<div class='company-name'>🏢 盈趣科技</div>
+</div>
+<div class='salary-badge'>💰 10-15K·13薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·海沧区·东孚</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>盈趣科技 | 盈趣科技 | 招聘者</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 18:30:44</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>项目经理/主管项目-出差</h3>
+<div class='company-name'>🏢 海康威视</div>
+</div>
+<div class='salary-badge'>💰 12-18K·15薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·翔安区·新店</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>海康威视 | 海康威视 | HRBP</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 18:29:40</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>海外售前技术支持（出差巴西等）</h3>
+<div class='company-name'>🏢 科华数据</div>
+</div>
+<div class='salary-badge'>💰 12-23K·14薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·湖里区·马垅</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>科华数据 | 科华数据 | 人事主管</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 17:25:47</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>高级自动化项目经理</h3>
+<div class='company-name'>🏢 盈趣科技</div>
+</div>
+<div class='salary-badge'>💰 13-22K·13薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·海沧区·东孚</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>盈趣科技 | 盈趣科技 | 招聘者</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 17:24:39</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>项目经理</h3>
+<div class='company-name'>🏢 厦门蓝海天</div>
+</div>
+<div class='salary-badge'>💰 10-15K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·集美区·侨英</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>厦门蓝海 | 厦门蓝海天 | 天</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 17:24:03</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>数据治理项目经理【厦门】</h3>
+<div class='company-name'>🏢 湖北小番茄数据科技</div>
+</div>
+<div class='salary-badge'>💰 15-20K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·湖里区·禾山</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>湖北小番 | 湖北小番茄数据科技 | 茄数据科技</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 17:22:58</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>外贸项目经理</h3>
+<div class='company-name'>🏢 盈趣科技</div>
+</div>
+<div class='salary-badge'>💰 12-16K·13薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·海沧区·东孚</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>盈趣科技 | 盈趣科技 | hr</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 17:12:06</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>项目经理（小红书）</h3>
+<div class='company-name'>🏢 多想云</div>
+</div>
+<div class='salary-badge'>💰 10-15K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·思明区·莲前</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>多想云 | 多想云 | 招聘主管</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 17:11:39</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>售前经理</h3>
+<div class='company-name'>🏢 锦融信息科技</div>
+</div>
+<div class='salary-badge'>💰 12-18K·13薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·思明区·湖滨南路</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>锦融信息 | 锦融信息科技 | 科技</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 17:11:12</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>pmo高级项目经理</h3>
+<div class='company-name'>🏢 卓融信息</div>
+</div>
+<div class='salary-badge'>💰 15-25K·13薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·思明区·莲前</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>卓融信息 | 卓融信息 | 副总经理</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 17:10:15</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>产品项目总监</h3>
+<div class='company-name'>🏢 厦门美亚亿安信息科技</div>
+</div>
+<div class='salary-badge'>💰 16-30K·13薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·思明区·莲花</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>厦门美亚 | 厦门美亚亿安信息科技 | 亿安信息科技</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 17:09:18</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>项目经理</h3>
+<div class='company-name'>🏢 立达信</div>
+</div>
+<div class='salary-badge'>💰 12-18K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·湖里区·禾山</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>立达信 | 立达信 | HR</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 17:08:23</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>项目经理</h3>
+<div class='company-name'>🏢 亿格</div>
+</div>
+<div class='salary-badge'>💰 12-19K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·集美区·灌口</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>亿格 | 亿格 | 人事行政专员</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 17:07:56</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>项目经理/主管</h3>
+<div class='company-name'>🏢 雅迅智联</div>
+</div>
+<div class='salary-badge'>💰 10-15K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·思明区·软件园</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>雅迅智联 | 雅迅智联 | 招聘经理</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 17:06:59</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>康养项目经理</h3>
+<div class='company-name'>🏢 中国太平洋人寿保险</div>
+</div>
+<div class='salary-badge'>💰 15-30K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·思明区·湖滨南路</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>中国太平 | 中国太平洋人寿保险 | 洋人寿保险</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 17:06:33</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>算力解决方案专家</h3>
+<div class='company-name'>🏢 厦门咪咕新空文化科技</div>
+</div>
+<div class='salary-badge'>💰 15-30K·14薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·集美区·杏林</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>厦门咪咕 | 厦门咪咕新空文化科技 | 新空文化科技</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 16:42:04</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>售前方案工程师</h3>
+<div class='company-name'>🏢 诺博视</div>
+</div>
+<div class='salary-badge'>💰 10-15K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·集美区·厦门北站</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>诺博视 | 诺博视 | 人事</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 16:39:33</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>大客户经理-阿里正编for泉州-冲年薪50万者-五险一金</h3>
+<div class='company-name'>🏢 阿里巴巴集团</div>
+</div>
+<div class='salary-badge'>💰 15-30K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·思明区·软件园</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>阿里巴巴 | 阿里巴巴集团 | 集团</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 16:34:54</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>系统开发项目经理</h3>
+<div class='company-name'>🏢 海马云</div>
+</div>
+<div class='salary-badge'>💰 13-15K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·集美区·杏林</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>海马云 | 海马云 | HRBP</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 16:27:42</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>海外售前工程师-出差</h3>
+<div class='company-name'>🏢 福建电子口岸</div>
+</div>
+<div class='salary-badge'>💰 11-18K·15薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·思明区·观音山</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>福建电子 | 福建电子口岸 | 口岸</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 16:14:41</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>金融大客户经理</h3>
+<div class='company-name'>🏢 依资财税</div>
+</div>
+<div class='salary-badge'>💰 15-20K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·思明区·火车站</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>依资财税 | 依资财税 | 招聘者</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 16:13:43</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>商务经理（五险一金、双休）</h3>
+<div class='company-name'>🏢 厦门二轻大狮文化传媒</div>
+</div>
+<div class='salary-badge'>💰 15-20K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·思明区·湖滨南路</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>厦门二轻 | 厦门二轻大狮文化传媒 | 大狮文化传媒</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 16:11:07</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>养老社区项目经理</h3>
+<div class='company-name'>🏢 厦门思明区智善家...</div>
+</div>
+<div class='salary-badge'>💰 15-25K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·思明区·湖滨南路</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>厦门思明 | 厦门思明区智善家... | 区智善家</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 16:09:37</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>售前工程师</h3>
+<div class='company-name'>🏢 浩海数据</div>
+</div>
+<div class='salary-badge'>💰 10-15K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·思明区·软件园</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>浩海数据 | 浩海数据 | 招聘者</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 15:40:23</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>物业项目经理</h3>
+<div class='company-name'>🏢 怡家园物业</div>
+</div>
+<div class='salary-badge'>💰 10-15K·15薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·湖里区·禾山</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>怡家园物 | 怡家园物业 | 业</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 15:32:43</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>业务项目经理</h3>
+<div class='company-name'>🏢 精一诚金属</div>
+</div>
+<div class='salary-badge'>💰 10-15K·13薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·同安区</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>精一诚金 | 精一诚金属 | 属</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 15:31:23</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>项目经理（IVD仪器方向）</h3>
+<div class='company-name'>🏢 美林美邦</div>
+</div>
+<div class='salary-badge'>💰 20-40K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·海沧区·东孚</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>美林美邦 | 美林美邦 | CEO</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 15:29:25</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>研发项目经理</h3>
+<div class='company-name'>🏢 佳因特</div>
+</div>
+<div class='salary-badge'>💰 13-22K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·海沧区·东孚</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>佳因特 | 佳因特 | 招聘主管</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 15:25:42</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>产品经理</h3>
+<div class='company-name'>🏢 信达科创</div>
+</div>
+<div class='salary-badge'>💰 10-15K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·翔安区·马巷</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>信达科创 | 信达科创 | 总经理</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 15:25:17</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>高级教育产品经理</h3>
+<div class='company-name'>🏢 自强科技</div>
+</div>
+<div class='salary-badge'>💰 15-30K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·湖里区·禾山</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>自强科技 | 自强科技 | 招聘者</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 15:24:51</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>高级项目经理（PM）</h3>
+<div class='company-name'>🏢 畅拓科技</div>
+</div>
+<div class='salary-badge'>💰 15-25K·14薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·思明区·软件园</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>畅拓科技 | 畅拓科技 | HR</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 15:24:25</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>产品经理-英文工作语言</h3>
+<div class='company-name'>🏢 网宿科技</div>
+</div>
+<div class='salary-badge'>💰 14-25K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·集美区</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>网宿科技 | 网宿科技 | 招聘经理</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 15:23:31</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>产品经理</h3>
+<div class='company-name'>🏢 熙杉科技</div>
+</div>
+<div class='salary-badge'>💰 10-15K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·湖里区·禾山</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>熙杉科技 | 熙杉科技 | 人事</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 15:22:02</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>产品经理</h3>
+<div class='company-name'>🏢 DNS.COM</div>
+</div>
+<div class='salary-badge'>💰 10-15K·13薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·集美区·灌口</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>未知 | DNS.COM | DNS.COM·hr</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 15:16:17</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>销售精英管理－「团队管理」</h3>
+<div class='company-name'>🏢 黑谷科技</div>
+</div>
+<div class='salary-badge'>💰 28-55K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·湖里区</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>黑谷科技 | 黑谷科技 | HRM高级人力资源经理</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 15:11:59</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>产品经理（AI）</h3>
+<div class='company-name'>🏢 网宿科技</div>
+</div>
+<div class='salary-badge'>💰 12-20K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·集美区·杏林</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>网宿科技 | 网宿科技 | 招聘HR</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 15:04:22</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>售前解决方案经理农牧业</h3>
+<div class='company-name'>🏢 四川润云科技有限公司</div>
+</div>
+<div class='salary-badge'>💰 10-15K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>成都·双流区·华阳</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>四川润云 | 四川润云科技有限公司 | 科技有限公司</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 14:59:43</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>售前技术支持</h3>
+<div class='company-name'>🏢 国鑫</div>
+</div>
+<div class='salary-badge'>💰 15-20K·13薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·南山区·科技园</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>国鑫 | 国鑫 | HR</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 14:52:17</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>产品开发项目经理</h3>
+<div class='company-name'>🏢 蓝旭科技</div>
+</div>
+<div class='salary-badge'>💰 10-15K·13薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·翔安区·马巷</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>蓝旭科技 | 蓝旭科技 | 人力资源</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 14:15:26</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>销售代表（六险一金）</h3>
+<div class='company-name'>🏢 稿定科技</div>
+</div>
+<div class='salary-badge'>💰 15-30K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·湖里区·五缘湾</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>稿定科技 | 稿定科技 | HR</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 14:04:04</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>AI数据项目经理</h3>
+<div class='company-name'>🏢 真景科技</div>
+</div>
+<div class='salary-badge'>💰 10-15K·14薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·思明区·莲前</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>真景科技 | 真景科技 | HR</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 13:38:19</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>大客户销售</h3>
+<div class='company-name'>🏢 领星</div>
+</div>
+<div class='salary-badge'>💰 15-20K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·湖里区·禾山</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>领星 | 领星 | 城市经理</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 13:36:37</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>售前工程师(J10443)</h3>
+<div class='company-name'>🏢 星纵物联</div>
+</div>
+<div class='salary-badge'>💰 10-15K·15薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·集美区·灌口</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>星纵物联 | 星纵物联 | HR</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 12:14:59</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>项目经理</h3>
+<div class='company-name'>🏢 畅享信息</div>
+</div>
+<div class='salary-badge'>💰 10-15K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·集美区·灌口</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>畅享信息 | 畅享信息 | 人事专员</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 12:13:36</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>资深项目经理</h3>
+<div class='company-name'>🏢 盈趣科技</div>
+</div>
+<div class='salary-badge'>💰 11-20K·13薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>盈趣科技 | 盈趣科技 | HR主管</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 12:12:51</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>解决方案经理</h3>
+<div class='company-name'>🏢 交测</div>
+</div>
+<div class='salary-badge'>💰 10-15K·13薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·集美区·后溪</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>交测 | 交测 | 总经理</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 12:02:38</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>售前工程师</h3>
+<div class='company-name'>🏢 泽宇科技</div>
+</div>
+<div class='salary-badge'>💰 10-15K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·思明区·软件园</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>泽宇科技 | 泽宇科技 | 人事经理</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 11:53:27</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>售前解决方案专家</h3>
+<div class='company-name'>🏢 黑镜科技</div>
+</div>
+<div class='salary-badge'>💰 14-20K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·思明区·厦港</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>黑镜科技 | 黑镜科技 | 招聘者</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 11:52:33</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>售前工程师</h3>
+<div class='company-name'>🏢 福建电子口岸</div>
+</div>
+<div class='salary-badge'>💰 9-14K·15薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·思明区·观音山</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>福建电子 | 福建电子口岸 | 口岸</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 11:51:56</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>售前工程师</h3>
+<div class='company-name'>🏢 易景软件</div>
+</div>
+<div class='salary-badge'>💰 10-15K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·思明区·软件园</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>易景软件 | 易景软件 | 董事长</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 11:50:47</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>售前工程师</h3>
+<div class='company-name'>🏢 兆脉科技</div>
+</div>
+<div class='salary-badge'>💰 8-13K·13薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·思明区·湖滨南路</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>兆脉科技 | 兆脉科技 | 行政人事</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 11:50:17</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>售前产品顾问（福建）(J10380)</h3>
+<div class='company-name'>🏢 奥威亚</div>
+</div>
+<div class='salary-badge'>💰 10-14K·14薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·湖里区·高崎</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>奥威亚 | 奥威亚 | hrbp</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 11:49:44</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>售前支持</h3>
+<div class='company-name'>🏢 先行网络</div>
+</div>
+<div class='salary-badge'>💰 10-15K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·湖里区·禾山</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>先行网络 | 先行网络 | 总经理助理</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 11:48:39</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>储能售前工程师</h3>
+<div class='company-name'>🏢 华振新能源</div>
+</div>
+<div class='salary-badge'>💰 8-13K·13薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>厦门·思明区·观音山</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>华振新能 | 华振新能源 | 源</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 11:05:53</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>软件大客户销售经理-入职六险一金</h3>
+<div class='company-name'>🏢 蓝凌软件</div>
+</div>
+<div class='salary-badge'>💰 15-25K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>福州·闽侯县·新西客站</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>蓝凌软件 | 蓝凌软件 | HRBP</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 11:05:22</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>IT上市企业-大客户销售（政府/企业/金融）</h3>
+<div class='company-name'>🏢 北京海量数据</div>
+</div>
+<div class='salary-badge'>💰 14-28K·24薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>福州·鼓楼区·东街口</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>北京海量 | 北京海量数据 | 数据</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 11:04:49</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>销售工程师</h3>
+<div class='company-name'>🏢 帆软软件</div>
+</div>
+<div class='salary-badge'>💰 15-30K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>福州·鼓楼区·五一广场</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>帆软软件 | 帆软软件 | HRBP</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 11:03:49</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>驻场福州--售前技术支持</h3>
+<div class='company-name'>🏢 宏天信业</div>
+</div>
+<div class='salary-badge'>💰 11-22K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>福州</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>宏天信业 | 宏天信业 | 人资经理</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 11:00:37</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>AI解决方案专家 (RAG)</h3>
+<div class='company-name'>🏢 小马智印</div>
+</div>
+<div class='salary-badge'>💰 30-40K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>广州·番禺区·石楼</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>小马智印 | 小马智印 | 招聘专员</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 10:59:35</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>高级解决方案架构师</h3>
+<div class='company-name'>🏢 音泰思</div>
+</div>
+<div class='salary-badge'>💰 23-26K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>广州·南沙区·黄阁</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>音泰思 | 音泰思 | 人事助理</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 10:58:33</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>解决方案经理</h3>
+<div class='company-name'>🏢 数说故事</div>
+</div>
+<div class='salary-badge'>💰 25-35K·14薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>广州·天河区·猎德</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>数说故事 | 数说故事 | HRM</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 10:57:25</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>解决方案售前工程师</h3>
+<div class='company-name'>🏢 创邻科技</div>
+</div>
+<div class='salary-badge'>💰 13-25K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>广州·白云区·三元里</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>创邻科技 | 创邻科技 | HRBP</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 10:56:24</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>高级解决方案专家（能源管理）</h3>
+<div class='company-name'>🏢 蘑菇物联</div>
+</div>
+<div class='salary-badge'>💰 18-25K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>广州·南沙区·东涌</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>蘑菇物联 | 蘑菇物联 | HRBP</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 10:54:46</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>爬虫工程师（双休）</h3>
+<div class='company-name'>🏢 头文科技</div>
+</div>
+<div class='salary-badge'>💰 22-35K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>广州·番禺区·大石</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>头文科技 | 头文科技 | HR</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 10:51:50</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>安全售前解决方案</h3>
+<div class='company-name'>🏢 广东亿迅科技有限公司</div>
+</div>
+<div class='salary-badge'>💰 20-30K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>广州·天河区·员村</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>广东亿迅 | 广东亿迅科技有限公司 | 科技有限公司</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 10:51:14</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>DBS（Digital Business System)售前工程师</h3>
+<div class='company-name'>🏢 爱渠西来艾颂信息...</div>
+</div>
+<div class='salary-badge'>💰 30-50K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>广州·天河区·石牌</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>爱渠西来 | 爱渠西来艾颂信息... | 艾颂信息</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 10:49:38</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>电磁仿真应用工程师</h3>
+<div class='company-name'>🏢 上海创景</div>
+</div>
+<div class='salary-badge'>💰 15-25K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>广州·南沙区·黄阁</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>上海创景 | 上海创景 | 人事招聘</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 10:48:34</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>品牌客户运营专家（售前方向）</h3>
+<div class='company-name'>🏢 有赞</div>
+</div>
+<div class='salary-badge'>💰 28-35K·14薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>广州·海珠区·凤阳</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>有赞 | 有赞 | HR专家</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 10:47:28</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>售前解决方案经理</h3>
+<div class='company-name'>🏢 数说故事</div>
+</div>
+<div class='salary-badge'>💰 20-30K·14薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>广州·天河区·猎德</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>数说故事 | 数说故事 | 招聘专家</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 10:45:55</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>资深网络安全售前工程师</h3>
+<div class='company-name'>🏢 广东大中信息</div>
+</div>
+<div class='salary-badge'>💰 12-24K·13薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>广州·黄埔区·科学城</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>广东大中 | 广东大中信息 | 信息</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 10:45:22</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>香港運營商售前經理</h3>
+<div class='company-name'>🏢 亚信科技</div>
+</div>
+<div class='salary-badge'>💰 18-30K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>广州·番禺区·石楼</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>亚信科技 | 亚信科技 | 招聘者</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 10:44:49</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>售前工程师</h3>
+<div class='company-name'>🏢 欧肯信息科技</div>
+</div>
+<div class='salary-badge'>💰 18-30K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>广州·越秀区·建设路</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>欧肯信息 | 欧肯信息科技 | 科技</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 10:43:47</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>高级技术支持工程师（广州）</h3>
+<div class='company-name'>🏢 华工能源</div>
+</div>
+<div class='salary-badge'>💰 15-25K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>广州·天河区·元岗</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>华工能源 | 华工能源 | 人事主管</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 10:43:12</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>海外售前工程师</h3>
+<div class='company-name'>🏢 视源股份(CVTE)</div>
+</div>
+<div class='salary-badge'>💰 12-22K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>广州·黄埔区·中心城</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>视源股份 | 视源股份(CVTE) |</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 10:42:39</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>销售工程师（售前工程师）</h3>
+<div class='company-name'>🏢 广州海博睿数字科技</div>
+</div>
+<div class='salary-badge'>💰 12-24K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>广州·番禺区·市桥</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>广州海博 | 广州海博睿数字科技 | 睿数字科技</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 10:41:51</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>运维解决方案售前架构师</h3>
+<div class='company-name'>🏢 嘉为科技</div>
+</div>
+<div class='salary-badge'>💰 15-30K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>广州·天河区·石牌</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>嘉为科技 | 嘉为科技 | AIOps解决方案负责人</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 10:41:18</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>院校解决方案行销</h3>
+<div class='company-name'>🏢 浙江华为</div>
+</div>
+<div class='salary-badge'>💰 18-28K·16薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>广州·越秀区·华乐</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>浙江华为 | 浙江华为 | 人事</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 10:40:43</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>解决方案行销工程师</h3>
+<div class='company-name'>🏢 海康威视</div>
+</div>
+<div class='salary-badge'>💰 15-25K·15薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>广州·番禺区·大学城</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>海康威视 | 海康威视 | HRBP</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 10:39:39</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>肌肤解决方案专家（急）</h3>
+<div class='company-name'>🏢 七品运营管理有限公司</div>
+</div>
+<div class='salary-badge'>💰 15-25K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>广州·天河区·体育中心</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>七品运营 | 七品运营管理有限公司 | 管理有限公司</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 10:38:38</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>日语项目经理/PMO（汽车行业解决方案）</h3>
+<div class='company-name'>🏢 职人成长</div>
+</div>
+<div class='salary-badge'>💰 15-25K·14薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>广州·番禺区·石楼</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>职人成长 | 职人成长 | 技术总监</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 10:37:32</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>产品解决方案专家</h3>
+<div class='company-name'>🏢 京东科技集团</div>
+</div>
+<div class='salary-badge'>💰 25-50K·16薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>广州·海珠区·琶洲</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>京东科技 | 京东科技集团 | 集团</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 10:37:03</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>售前解决方案专家（AI心理咨询方向）</h3>
+<div class='company-name'>🏢 乐达心理</div>
+</div>
+<div class='salary-badge'>💰 15-30K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>广州·越秀区·北京路</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>乐达心理 | 乐达心理 | HR</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 10:36:00</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>高级解决方案工程师</h3>
+<div class='company-name'>🏢 广州宇衡信息科技</div>
+</div>
+<div class='salary-badge'>💰 20-40K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>广州·白云区·三元里</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>广州宇衡 | 广州宇衡信息科技 | 信息科技</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 10:34:56</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>Bigo-高级支付经理（解决方案）</h3>
+<div class='company-name'>🏢 YY百果园</div>
+</div>
+<div class='salary-badge'>💰 30-40K·16薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>广州·番禺区·南村</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>百果园 | YY百果园 | HR</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 10:33:54</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>解决方案-华南（工业软件） (MJ082445)</h3>
+<div class='company-name'>🏢 吉利控股集团</div>
+</div>
+<div class='salary-badge'>💰 18-30K·16薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>广州·黄埔区·科学城</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>吉利控股 | 吉利控股集团 | 集团</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 10:32:49</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>解决方案工程师&解决方案负责人</h3>
+<div class='company-name'>🏢 广州文基智能科技</div>
+</div>
+<div class='salary-badge'>💰 15-25K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>广州·海珠区·客村</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>广州文基 | 广州文基智能科技 | 智能科技</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 10:32:17</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>流程行业解决方案顾问</h3>
+<div class='company-name'>🏢 赛意信息</div>
+</div>
+<div class='salary-badge'>💰 18-35K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>广州·天河区·珠江新城</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>赛意信息 | 赛意信息 | 招聘顾问</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 10:30:27</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>服务软件解决方案经理</h3>
+<div class='company-name'>🏢 华为</div>
+</div>
+<div class='salary-badge'>💰 20-40K·16薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>广州·白云区·金沙洲</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>华为 | 华为 | 人力资源招聘专员</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 10:29:21</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>KA大客户经理</h3>
+<div class='company-name'>🏢 工博科技</div>
+</div>
+<div class='salary-badge'>💰 15-30K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>广州·天河区·岗顶</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>工博科技 | 工博科技 | 人事主管</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 10:28:15</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>电力_售前技术支持</h3>
+<div class='company-name'>🏢 大音智源</div>
+</div>
+<div class='salary-badge'>💰 14-25K·15薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>广州·天河区·高唐</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>大音智源 | 大音智源 | 招聘经理</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 10:27:11</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>售前工程师</h3>
+<div class='company-name'>🏢 边界无限</div>
+</div>
+<div class='salary-badge'>💰 15-25K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>广州·番禺区·市桥</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>边界无限 | 边界无限 | HRBP</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 10:26:09</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>售前技术专家（智慧水利方向）</h3>
+<div class='company-name'>🏢 广州捷世高信息科技</div>
+</div>
+<div class='salary-badge'>💰 20-35K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>广州·海珠区·客村</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>广州捷世 | 广州捷世高信息科技 | 高信息科技</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 10:25:04</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>大数据产品经理（周末双休）</h3>
+<div class='company-name'>🏢 赢商网</div>
+</div>
+<div class='salary-badge'>💰 15-22K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>广州</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>赢商网 | 赢商网 | 招聘副主管</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 10:24:05</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>售前工程师-北京/广州/深圳</h3>
+<div class='company-name'>🏢 网安捷通</div>
+</div>
+<div class='salary-badge'>💰 12-22K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>广州·天河区·体育中心</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>网安捷通 | 网安捷通 | 人事经理</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 10:22:58</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>天线工程师—双休/五险一金/不加班</h3>
+<div class='company-name'>🏢 阳普智能</div>
+</div>
+<div class='salary-badge'>💰 18-23K·13薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>广州·天河区·小新塘</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>阳普智能 | 阳普智能 | 人事专员</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 10:21:57</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>售前解决方案</h3>
+<div class='company-name'>🏢 汉数科技</div>
+</div>
+<div class='salary-badge'>💰 20-30K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>广州·海珠区·琶洲</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>汉数科技 | 汉数科技 | 招聘经理</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 10:20:24</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>垂直调优-系统工程师（GR）</h3>
+<div class='company-name'>🏢 大湾区国创中心</div>
+</div>
+<div class='salary-badge'>💰 27-50K·15薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>广州·黄埔区·万达广场</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>大湾区国 | 大湾区国创中心 | 创中心</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 10:19:21</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>售前技术支持</h3>
+<div class='company-name'>🏢 广州越光信息科技</div>
+</div>
+<div class='salary-badge'>💰 15-25K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>广州·黄埔区·东圃</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>广州越光 | 广州越光信息科技 | 信息科技</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 10:08:43</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>销售工程师</h3>
+<div class='company-name'>🏢 艮业科技</div>
+</div>
+<div class='salary-badge'>💰 20-40K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>广州</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>艮业科技 | 艮业科技 | 招聘者</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 10:07:40</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>销售管理岗</h3>
+<div class='company-name'>🏢 冠鹏信息</div>
+</div>
+<div class='salary-badge'>💰 20-35K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>广州·天河区·天河公园</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>冠鹏信息 | 冠鹏信息 | 招聘经理</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 10:06:37</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>售前顾问（电力行业）</h3>
+<div class='company-name'>🏢 汇通国信</div>
+</div>
+<div class='salary-badge'>💰 15-25K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>广州·海珠区·琶洲</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>汇通国信 | 汇通国信 | 人事主管</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 10:04:59</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>MES/ERP售前转MES区域负责人</h3>
+<div class='company-name'>🏢 树字信息科技</div>
+</div>
+<div class='salary-badge'>💰 20-30K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>广州</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>树字信息 | 树字信息科技 | 科技</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 10:04:23</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>销售运营/售前技术支持</h3>
+<div class='company-name'>🏢 阿尔沃</div>
+</div>
+<div class='salary-badge'>💰 15-30K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>广州·花都区·区政府</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>阿尔沃 | 阿尔沃 | 公司ceo</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-22 10:03:50</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>串联质谱售前支持</h3>
+<div class='company-name'>🏢 成都雪锦亭信息技...</div>
+</div>
+<div class='salary-badge'>💰 20-30K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>广州·番禺区·大石</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>成都雪锦 | 成都雪锦亭信息技... | 亭信息技</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 23:29:15</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>安装运维主管/经理（莆田）</h3>
+<div class='company-name'>🏢 铭阳水务</div>
+</div>
+<div class='salary-badge'>💰 11-22K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>福州·仓山区·金山</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>铭阳水务 | 铭阳水务 | 总经理助理</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 23:28:25</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>软件产品经理</h3>
+<div class='company-name'>🏢 宁德思客琦</div>
+</div>
+<div class='salary-badge'>💰 15-25K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>福州·闽侯县·新西客站</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>宁德思客 | 宁德思客琦 | 琦</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 23:27:50</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>数字化咨询工程师</h3>
+<div class='company-name'>🏢 深圳网新新思</div>
+</div>
+<div class='salary-badge'>💰 15-30K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>福州·晋安区·新店</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>深圳网新 | 深圳网新新思 | 新思</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 23:27:10</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>新能源产品经理</h3>
+<div class='company-name'>🏢 三峡智控</div>
+</div>
+<div class='salary-badge'>💰 15-25K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>福州</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>三峡智控 | 三峡智控 | 招聘者</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 23:26:40</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>电商客服总监</h3>
+<div class='company-name'>🏢 超级智体</div>
+</div>
+<div class='salary-badge'>💰 13-26K·14薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>福州·台江区·台江广场</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>超级智体 | 超级智体 | 人力行政部总监</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 23:26:03</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>数字化项目经理</h3>
+<div class='company-name'>🏢 揽贤科技</div>
+</div>
+<div class='salary-badge'>💰 18-25K·13薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>福州·鼓楼区·五凤兰庭</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>揽贤科技 | 揽贤科技 | 招聘者</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 23:24:07</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>解决方案工程师（AGV）</h3>
+<div class='company-name'>🏢 无锡优奇智能</div>
+</div>
+<div class='salary-badge'>💰 13-25K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·坪山区·坪山</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>无锡优奇 | 无锡优奇智能 | 智能</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 23:23:33</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>行业解决方案经理（顾问）</h3>
+<div class='company-name'>🏢 vivo</div>
+</div>
+<div class='salary-badge'>💰 15-22K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·福田区·梅林</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>产品经理 | vivo |</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 23:23:04</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>无人机解决方案工程师</h3>
+<div class='company-name'>🏢 交控科技</div>
+</div>
+<div class='salary-badge'>💰 20-21K·16薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·福田区·梅林</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>交控科技 | 交控科技 | 招聘经理</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 23:22:33</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>ESG解决方案资深专员-集团总部(J17124)</h3>
+<div class='company-name'>🏢 欣旺达</div>
+</div>
+<div class='salary-badge'>💰 15-25K·13薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·宝安区·石岩</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>欣旺达 | 欣旺达 | 高级招聘专员</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 23:22:03</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>咨询与解决方案岗</h3>
+<div class='company-name'>🏢 招银云创</div>
+</div>
+<div class='salary-badge'>💰 18-35K·15薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·福田区·梅林</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>招银云创 | 招银云创 | HRBP</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 23:21:29</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>解决方案销售经理</h3>
+<div class='company-name'>🏢 绿米联创</div>
+</div>
+<div class='salary-badge'>💰 15-25K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>绿米联创 | 绿米联创 | hr</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 23:20:57</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>解决方案工程师-船舶</h3>
+<div class='company-name'>🏢 震兑</div>
+</div>
+<div class='salary-badge'>💰 18-30K·13薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·宝安区·西乡</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>震兑 | 震兑 | 招聘经理</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 23:18:48</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>项目工程师</h3>
+<div class='company-name'>🏢 美众联</div>
+</div>
+<div class='salary-badge'>💰 15-25K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·宝安区·沙井</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>美众联 | 美众联 | HRBP</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 23:18:15</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>数据产品经理&售前工程师</h3>
+<div class='company-name'>🏢 华南数字集团</div>
+</div>
+<div class='salary-badge'>💰 15-25K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·福田区·石厦</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>华南数字 | 华南数字集团 | 集团</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 23:17:37</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>海外售前工程师（娱乐影视方向）(A202412)</h3>
+<div class='company-name'>🏢 其域</div>
+</div>
+<div class='salary-badge'>💰 20-35K·14薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·南山区·科技园</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>其域 | 其域 | 招聘经理</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 23:16:59</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>售前技术支持工程师</h3>
+<div class='company-name'>🏢 北京镜舟科技有限公司</div>
+</div>
+<div class='salary-badge'>💰 18-23K·16薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·福田区·岗厦</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>北京镜舟 | 北京镜舟科技有限公司 | 科技有限公司</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 23:16:23</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>技术支持工程师</h3>
+<div class='company-name'>🏢 璇玑动力</div>
+</div>
+<div class='salary-badge'>💰 13-25K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·宝安区·西乡</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>璇玑动力 | 璇玑动力 | 人事专员</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 23:15:34</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>售前技术支持</h3>
+<div class='company-name'>🏢 极联股份</div>
+</div>
+<div class='salary-badge'>💰 15-25K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·南山区·西丽</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>极联股份 | 极联股份 | HR</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 23:14:40</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>泛互-公有云-解决方案架构师</h3>
+<div class='company-name'>🏢 字节跳动</div>
+</div>
+<div class='salary-badge'>💰 23-45K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·南山区·科技园</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>字节跳动 | 字节跳动 | 人事专员</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 23:14:02</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>北京字节跳动招聘物流运营</h3>
+<div class='company-name'>🏢 北京字节跳动</div>
+</div>
+<div class='salary-badge'>💰 25-50K·15薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·南山区·科技园</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>北京字节 | 北京字节跳动 | 跳动</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 23:13:29</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>煤矿产品解决方案工程师</h3>
+<div class='company-name'>🏢 深圳利维智能有限公司</div>
+</div>
+<div class='salary-badge'>💰 15-22K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·龙岗区·南联</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>深圳利维 | 深圳利维智能有限公司 | 智能有限公司</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 23:12:52</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>软件系统产品解决方案专家</h3>
+<div class='company-name'>🏢 深圳竹芒科技有限公司</div>
+</div>
+<div class='salary-badge'>💰 30-40K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·南山区·科技园</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>深圳竹芒 | 深圳竹芒科技有限公司 | 科技有限公司</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 23:12:20</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>解决方案专家</h3>
+<div class='company-name'>🏢 深圳市金山办公软件</div>
+</div>
+<div class='salary-badge'>💰 15-30K·13薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·福田区·车公庙</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>深圳市金 | 深圳市金山办公软件 | 山办公软件</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 23:11:47</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>解决方案顾问</h3>
+<div class='company-name'>🏢 深圳有活科技有限公司</div>
+</div>
+<div class='salary-badge'>💰 15-25K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·南山区·蛇口</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>深圳有活 | 深圳有活科技有限公司 | 科技有限公司</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 23:11:15</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>解决方案专家（深圳）</h3>
+<div class='company-name'>🏢 华茂能联</div>
+</div>
+<div class='salary-badge'>💰 25-50K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·宝安区·西乡</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>华茂能联 | 华茂能联 | HR</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 23:10:42</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>AI解决方案工程师</h3>
+<div class='company-name'>🏢 上海归墟机器人公司</div>
+</div>
+<div class='salary-badge'>💰 15-30K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·宝安区·西乡</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>上海归墟 | 上海归墟机器人公司 | 机器人公司</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 23:09:45</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>售前技术经理（智能座舱） (MJ000042)</h3>
+<div class='company-name'>🏢 锐见智行</div>
+</div>
+<div class='salary-badge'>💰 20-40K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·福田区·下沙</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>锐见智行 | 锐见智行 | HRBP</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 23:09:15</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>售前经理</h3>
+<div class='company-name'>🏢 深圳市伊星空科技</div>
+</div>
+<div class='salary-badge'>💰 12-24K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·福田区·梅林</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>深圳市伊 | 深圳市伊星空科技 | 星空科技</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 23:08:45</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>高级解决方案售前经理（财务数字化方向）</h3>
+<div class='company-name'>🏢 每刻</div>
+</div>
+<div class='salary-badge'>💰 15-30K·15薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·南山区·科技园</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>每刻 | 每刻 | 华南大区总经理</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 23:08:13</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>售前技术支持</h3>
+<div class='company-name'>🏢 赛桥生物</div>
+</div>
+<div class='salary-badge'>💰 20-30K·16薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·光明区·公明</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>赛桥生物 | 赛桥生物 | HR</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 23:07:42</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>南区售前负责人</h3>
+<div class='company-name'>🏢 微步在线</div>
+</div>
+<div class='salary-badge'>💰 35-50K·13薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·南山区·科技园</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>微步在线 | 微步在线 | 招聘总监</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 23:06:48</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>软件项目经理</h3>
+<div class='company-name'>🏢 览众数据</div>
+</div>
+<div class='salary-badge'>💰 12-24K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·宝安区·西乡</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>览众数据 | 览众数据 | HR</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 23:06:15</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>跨境支付产品经理（售前解决方案）</h3>
+<div class='company-name'>🏢 深圳市光子跃动科...</div>
+</div>
+<div class='salary-badge'>💰 25-40K·16薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·南山区·科技园</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>深圳市光 | 深圳市光子跃动科... | 子跃动科</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 23:04:02</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>售前技术支持</h3>
+<div class='company-name'>🏢 极联股份</div>
+</div>
+<div class='salary-badge'>💰 15-25K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·南山区·西丽</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>极联股份 | 极联股份 | HR</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 22:45:37</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>售前解决方案（四川凉山、南充、遂宁）</h3>
+<div class='company-name'>🏢 中国电子云</div>
+</div>
+<div class='salary-badge'>💰 20-30K·14薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>成都·武侯区·桂溪</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>中国电子 | 中国电子云 | 云</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 22:44:43</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>低代码高级产品经理</h3>
+<div class='company-name'>🏢 致远互联</div>
+</div>
+<div class='salary-badge'>💰 20-35K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>成都·双流区·华阳</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>致远互联 | 致远互联 | 招聘者</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 22:44:06</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>弱电智能化售前总监</h3>
+<div class='company-name'>🏢 航天广电</div>
+</div>
+<div class='salary-badge'>💰 20-40K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>成都·武侯区·新会展中心</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>航天广电 | 航天广电 | 招聘者</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 22:43:30</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>售前标书编写岗</h3>
+<div class='company-name'>🏢 成都精灵云</div>
+</div>
+<div class='salary-badge'>💰 15-25K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>成都·武侯区·新会展中心</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>成都精灵 | 成都精灵云 | 云</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 22:43:00</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>fae</h3>
+<div class='company-name'>🏢 杭州元启半导体</div>
+</div>
+<div class='salary-badge'>💰 20-30K·14薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>成都·武侯区·孵化园</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>杭州元启 | 杭州元启半导体 | 半导体</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 22:41:57</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>系统集成售前工程师</h3>
+<div class='company-name'>🏢 聚优创科技</div>
+</div>
+<div class='salary-badge'>💰 15-30K·13薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>成都·武侯区·武侯立交</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>聚优创科 | 聚优创科技 | 技</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 22:41:16</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>售前技术支持经理-电磁专业方向</h3>
+<div class='company-name'>🏢 未尔科技</div>
+</div>
+<div class='salary-badge'>💰 15-30K·14薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>成都·青羊区·黄田坝</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>未尔科技 | 未尔科技 | HR经理</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 22:39:55</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>解决方案顾问</h3>
+<div class='company-name'>🏢 深圳有活科技有限公司</div>
+</div>
+<div class='salary-badge'>💰 15-25K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·南山区·蛇口</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>深圳有活 | 深圳有活科技有限公司 | 科技有限公司</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 22:39:14</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>数字化解决方案</h3>
+<div class='company-name'>🏢 图为技术</div>
+</div>
+<div class='salary-badge'>💰 18-30K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·罗湖区·东门</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>图为技术 | 图为技术 | 人力资源经理</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 22:38:39</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>智慧交通解决方案技术经理</h3>
+<div class='company-name'>🏢 迅策科技</div>
+</div>
+<div class='salary-badge'>💰 25-45K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·南山区·科技园</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>迅策科技 | 迅策科技 | HRBP</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 22:37:30</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>解决方案工程师（钙钛矿）</h3>
+<div class='company-name'>🏢 光因科技</div>
+</div>
+<div class='salary-badge'>💰 15-30K·15薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·宝安区·沙井</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>光因科技 | 光因科技 | HR</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 22:36:55</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>生鲜食品行业解决方案岗</h3>
+<div class='company-name'>🏢 顺丰速运</div>
+</div>
+<div class='salary-badge'>💰 15-25K·13薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·南山区·蛇口</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>顺丰速运 | 顺丰速运 | HR</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 22:36:21</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>解决方案经理</h3>
+<div class='company-name'>🏢 不停科技</div>
+</div>
+<div class='salary-badge'>💰 20-40K·14薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·南山区·蛇口</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>不停科技 | 不停科技 | 招聘经理</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 22:35:49</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>AI云原生产品解决方案架构师-基础架构</h3>
+<div class='company-name'>🏢 字节跳动</div>
+</div>
+<div class='salary-badge'>💰 20-40K·18薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·南山区·科技园</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>字节跳动 | 字节跳动 | 招聘专员</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 22:34:41</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>解决方案工程师</h3>
+<div class='company-name'>🏢 顺丰科技</div>
+</div>
+<div class='salary-badge'>💰 30-45K·14薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·南山区·科技园</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>顺丰科技 | 顺丰科技 | 招聘经理</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 22:33:04</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>售前技术支持</h3>
+<div class='company-name'>🏢 极联股份</div>
+</div>
+<div class='salary-badge'>💰 15-25K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·南山区·西丽</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>极联股份 | 极联股份 | HR</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 22:32:11</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>储能解决方案工程师</h3>
+<div class='company-name'>🏢 深圳众城卓越科技...</div>
+</div>
+<div class='salary-badge'>💰 15-30K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·宝安区·福永</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>深圳众城 | 深圳众城卓越科技... | 卓越科技</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 22:31:26</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>汽车解决方案经理 (MJ001007)</h3>
+<div class='company-name'>🏢 凌云光技术</div>
+</div>
+<div class='salary-badge'>💰 20-40K·15薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·南山区·大学城</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>凌云光技 | 凌云光技术 | 术</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 22:30:52</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>高级解决方案经理（智慧能源方向）</h3>
+<div class='company-name'>🏢 航天智慧城市研究院</div>
+</div>
+<div class='salary-badge'>💰 18-25K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·南山区·科技园</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>航天智慧 | 航天智慧城市研究院 | 城市研究院</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 22:30:21</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>大客户与解决方案（城配、快递）</h3>
+<div class='company-name'>🏢 地上铁</div>
+</div>
+<div class='salary-badge'>💰 15-25K·14薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·南山区·科技园</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>地上铁 | 地上铁 | 招聘主管</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 22:29:50</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>数字化解决方案专家</h3>
+<div class='company-name'>🏢 华为</div>
+</div>
+<div class='salary-badge'>💰 30-60K·18薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·龙岗区·坂田</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>华为 | 华为 | 产品经理</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 22:29:20</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>储能解决方案工程师</h3>
+<div class='company-name'>🏢 深圳千益时代</div>
+</div>
+<div class='salary-badge'>💰 15-25K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·龙华区·清湖</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>深圳千益 | 深圳千益时代 | 时代</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 22:28:40</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>解决方案拓展SA（ERP方向）</h3>
+<div class='company-name'>🏢 超聚变技术有限公司</div>
+</div>
+<div class='salary-badge'>💰 20-40K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·福田区·车公庙</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>超聚变技 | 超聚变技术有限公司 | 术有限公司</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 22:28:07</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>海外解决方案工程师(充电桩）</h3>
+<div class='company-name'>🏢 阳光电源股份有限公司</div>
+</div>
+<div class='salary-badge'>💰 16-30K·15薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·龙华区·民治</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>阳光电源 | 阳光电源股份有限公司 | 股份有限公司</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 22:27:34</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>技术经理（低代码应用和AI解决方案方向）</h3>
+<div class='company-name'>🏢 优鲜互联</div>
+</div>
+<div class='salary-badge'>💰 20-30K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·盐田区·沙头角</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>优鲜互联 | 优鲜互联 | 客户产研交付负责人</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 22:26:59</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>解决方案经理</h3>
+<div class='company-name'>🏢 天创信用</div>
+</div>
+<div class='salary-badge'>💰 18-35K·14薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·福田区·会展中心</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>天创信用 | 天创信用 | HRBP</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 22:26:25</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>解决方案经理</h3>
+<div class='company-name'>🏢 东深智水</div>
+</div>
+<div class='salary-badge'>💰 25-30K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·南山区·科技园</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>东深智水 | 东深智水 | Hrbp</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 22:25:49</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>解决方案架构师（运营商）(J11454)</h3>
+<div class='company-name'>🏢 数联天下</div>
+</div>
+<div class='salary-badge'>💰 25-35K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·南山区·科技园</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>数联天下 | 数联天下 | HRBP经理</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 22:24:56</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>汽车售前解决方案专家(自研工业软件)</h3>
+<div class='company-name'>🏢 世冠科技</div>
+</div>
+<div class='salary-badge'>💰 25-45K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·龙岗区·坂田</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>世冠科技 | 世冠科技 | HRBP</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 22:24:21</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>产品技术专家（深圳）</h3>
+<div class='company-name'>🏢 上海观测未来信息技术</div>
+</div>
+<div class='salary-badge'>💰 25-35K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·南山区·蛇口</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>上海观测 | 上海观测未来信息技术 | 未来信息技术</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 22:23:49</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>腾讯云-华南区域售前解决方案架构师</h3>
+<div class='company-name'>🏢 腾讯</div>
+</div>
+<div class='salary-badge'>💰 30-60K·15薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·南山区·科技园</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>腾讯 | 腾讯 | 招聘经理</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 22:23:13</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>数据产品售前顾问（指标平台）</h3>
+<div class='company-name'>🏢 大应科技</div>
+</div>
+<div class='salary-badge'>💰 20-40K·14薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·南山区·科技园</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>大应科技 | 大应科技 | 招聘专家</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 22:22:34</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>技术支持工程师</h3>
+<div class='company-name'>🏢 中科超算</div>
+</div>
+<div class='salary-badge'>💰 12-24K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·福田区·石厦</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>中科超算 | 中科超算 | HR</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 22:22:02</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>解决方案经理</h3>
+<div class='company-name'>🏢 瑞达飞行</div>
+</div>
+<div class='salary-badge'>💰 18-30K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·南山区·科技园</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>瑞达飞行 | 瑞达飞行 | 行政人事经理</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 22:21:30</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>项目经理</h3>
+<div class='company-name'>🏢 敏思达</div>
+</div>
+<div class='salary-badge'>💰 20-30K·13薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·南山区·科技园</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>敏思达 | 敏思达 | HRD</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 22:20:58</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>行业方案架构师</h3>
+<div class='company-name'>🏢 深圳汇智云</div>
+</div>
+<div class='salary-badge'>💰 15-25K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·南山区·科技园</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>深圳汇智 | 深圳汇智云 | 云</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 22:20:25</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>FAE</h3>
+<div class='company-name'>🏢 创信测试技术</div>
+</div>
+<div class='salary-badge'>💰 13-26K·13薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·宝安区·石岩</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>创信测试 | 创信测试技术 | 技术</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 22:19:53</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>项目经理/主管</h3>
+<div class='company-name'>🏢 天阙</div>
+</div>
+<div class='salary-badge'>💰 15-25K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·南山区·科技园</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>天阙 | 天阙 | HRBP</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 22:19:15</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>售前技术支持</h3>
+<div class='company-name'>🏢 极联股份</div>
+</div>
+<div class='salary-badge'>💰 15-25K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·南山区·西丽</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>极联股份 | 极联股份 | HR</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 22:18:27</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>运维工程师</h3>
+<div class='company-name'>🏢 时代星云</div>
+</div>
+<div class='salary-badge'>💰 20-35K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>福州·马尾区·东方名城</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>时代星云 | 时代星云 | HRBP</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 22:17:22</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>数字政府解决方案客户经理-福建</h3>
+<div class='company-name'>🏢 中电信数政科技</div>
+</div>
+<div class='salary-badge'>💰 15-30K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>福州·鼓楼区·东街口</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>中电信数 | 中电信数政科技 | 政科技</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 22:15:46</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>解决方案工程师</h3>
+<div class='company-name'>🏢 赫曦电气</div>
+</div>
+<div class='salary-badge'>💰 12-24K·14薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>福州·鼓楼区·湖前</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>赫曦电气 | 赫曦电气 | 人力资源总监</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 22:14:55</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>BD/大区经理（B2C/教育局/公立院校/渠道商</h3>
+<div class='company-name'>🏢 编程猫</div>
+</div>
+<div class='salary-badge'>💰 15-30K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>福州·长乐区·长乐市中心城区</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>编程猫 | 编程猫 | HR</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 22:13:40</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>【南瑞信通】产品管理-福州</h3>
+<div class='company-name'>🏢 宏天信业</div>
+</div>
+<div class='salary-badge'>💰 11-22K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>福州</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>宏天信业 | 宏天信业 | 招聘HR</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 22:13:09</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>行业解决方案专家(J10395)</h3>
+<div class='company-name'>🏢 四创科技</div>
+</div>
+<div class='salary-badge'>💰 16-25K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>福州·闽侯县·新西客站</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>四创科技 | 四创科技 | HR专员</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 22:12:15</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>产品经理</h3>
+<div class='company-name'>🏢 福东消防</div>
+</div>
+<div class='salary-badge'>💰 15-25K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>福州·福清市·宏路</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>福东消防 | 福东消防 | 人事专员</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 22:08:19</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>解决方案高级经理</h3>
+<div class='company-name'>🏢 优必选机器人</div>
+</div>
+<div class='salary-badge'>💰 25-40K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·南山区</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>优必选机 | 优必选机器人 | 器人</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 22:07:44</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>解决方案工程师</h3>
+<div class='company-name'>🏢 图为技术</div>
+</div>
+<div class='salary-badge'>💰 23-30K·14薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·罗湖区·东门</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>图为技术 | 图为技术 | 招聘主管</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 22:05:55</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>售前解决方案工程师</h3>
+<div class='company-name'>🏢 深圳计算科学研究...</div>
+</div>
+<div class='salary-badge'>💰 25-45K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·龙华区·民治</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>深圳计算 | 深圳计算科学研究... | 科学研究</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 22:05:09</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>海外售前工程师</h3>
+<div class='company-name'>🏢 科陆电子</div>
+</div>
+<div class='salary-badge'>💰 15-25K·14薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·南山区·西丽</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>科陆电子 | 科陆电子 | HRBP</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 22:04:19</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>逆变器售前工程师</h3>
+<div class='company-name'>🏢 宁波三星</div>
+</div>
+<div class='salary-badge'>💰 20-25K·14薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>宁波三星 | 宁波三星 | 高级招聘HR</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 22:03:34</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>售前技术支持</h3>
+<div class='company-name'>🏢 同行者科技</div>
+</div>
+<div class='salary-badge'>💰 15-25K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·南山区·科技园</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>同行者科 | 同行者科技 | 技</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 22:02:57</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>售前支持（光伏、储能、逆变器）</h3>
+<div class='company-name'>🏢 中科瑞河</div>
+</div>
+<div class='salary-badge'>💰 20-30K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·宝安区·宝安中心区</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>中科瑞河 | 中科瑞河 | HR</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 22:02:21</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>售前工程师-亚马逊SaaS方向(MJ000096)</h3>
+<div class='company-name'>🏢 SparkX邑炎科技</div>
+</div>
+<div class='salary-badge'>💰 15-30K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·南山区·科技园</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>邑炎科技 | SparkX邑炎科技 | Senior</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 22:01:19</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>售前解决方案专家</h3>
+<div class='company-name'>🏢 长亮科技</div>
+</div>
+<div class='salary-badge'>💰 20-40K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·南山区·科技园</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>长亮科技 | 长亮科技 | Recruitment</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 22:00:45</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>资深 Python 工程师</h3>
+<div class='company-name'>🏢 简约思维</div>
+</div>
+<div class='salary-badge'>💰 25-50K·13薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·南山区·科技园</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>简约思维 | 简约思维 | HRBP人事主管</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 22:00:14</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>售前技术支持</h3>
+<div class='company-name'>🏢 极联股份</div>
+</div>
+<div class='salary-badge'>💰 15-25K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·南山区·西丽</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>极联股份 | 极联股份 | HR</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 21:59:24</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>大客户解决方案专家-飞书项目</h3>
+<div class='company-name'>🏢 字节跳动</div>
+</div>
+<div class='salary-badge'>💰 25-50K·15薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>字节跳动 | 字节跳动 | 招聘HR</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 21:58:52</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>人工智能解决方案专家</h3>
+<div class='company-name'>🏢 机智引擎</div>
+</div>
+<div class='salary-badge'>💰 20-40K·14薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·南山区·科技园</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>机智引擎 | 机智引擎 | 商业化负责人</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 21:58:20</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>解决方案经理</h3>
+<div class='company-name'>🏢 智元机器人</div>
+</div>
+<div class='salary-badge'>💰 25-45K·15薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·南山区·科技园</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>智元机器 | 智元机器人 | 人</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 21:57:18</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>大模型解决方案经理（私有化部署方向）</h3>
+<div class='company-name'>🏢 中青宝</div>
+</div>
+<div class='salary-badge'>💰 15-30K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·南山区·科技园</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>中青宝 | 中青宝 | 人事行政专员</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 21:56:48</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>解决方案经理</h3>
+<div class='company-name'>🏢 班度</div>
+</div>
+<div class='salary-badge'>💰 15-25K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·龙岗区·坂田</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>班度 | 班度 | 招聘者</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 21:56:16</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>机器人行业解决方案总监</h3>
+<div class='company-name'>🏢 智平方</div>
+</div>
+<div class='salary-badge'>💰 25-50K·16薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·南山区·科技园</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>智平方 | 智平方 | 招聘经理</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 21:55:14</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>LIMS/数据类解决方案咨询顾问</h3>
+<div class='company-name'>🏢 三维天地</div>
+</div>
+<div class='salary-badge'>💰 20-30K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·南山区·科技园</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>三维天地 | 三维天地 | hrbp经理</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 21:54:39</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>解决方案经理</h3>
+<div class='company-name'>🏢 捷顺科技</div>
+</div>
+<div class='salary-badge'>💰 15-25K·14薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·龙华区·观澜</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>捷顺科技 | 捷顺科技 | 产品方案部</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 21:54:06</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>解决方案技术工程师（海外）</h3>
+<div class='company-name'>🏢 诺瓦星云科技股份</div>
+</div>
+<div class='salary-badge'>💰 18-25K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·南山区·西丽</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>诺瓦星云 | 诺瓦星云科技股份 | 科技股份</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 21:53:32</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>解决方案高级/资深经理（智能制造场景）</h3>
+<div class='company-name'>🏢 优必选机器人</div>
+</div>
+<div class='salary-badge'>💰 20-40K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·南山区</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>优必选机 | 优必选机器人 | 器人</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 21:52:58</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>物流解决方案架构师</h3>
+<div class='company-name'>🏢 深圳易可达科技</div>
+</div>
+<div class='salary-badge'>💰 23-35K·14薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·龙岗区·坂田</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>深圳易可 | 深圳易可达科技 | 达科技</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 21:51:54</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>解决方案高级专员/专家（金融行业）</h3>
+<div class='company-name'>🏢 顺丰集团</div>
+</div>
+<div class='salary-badge'>💰 20-30K·14薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>顺丰集团 | 顺丰集团 | 招聘负责人</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 21:51:19</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>解决方案经理</h3>
+<div class='company-name'>🏢 云基华海</div>
+</div>
+<div class='salary-badge'>💰 30-35K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·南山区·科技园</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>云基华海 | 云基华海 | 运营总监</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 21:50:00</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>项目经理</h3>
+<div class='company-name'>🏢 追一科技</div>
+</div>
+<div class='salary-badge'>💰 15-25K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·南山区·科技园</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>追一科技 | 追一科技 | 人力资源专员</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 21:49:31</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>售前经理</h3>
+<div class='company-name'>🏢 浪潮通信</div>
+</div>
+<div class='salary-badge'>💰 15-30K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·福田区·车公庙</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>浪潮通信 | 浪潮通信 | HR</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 21:48:57</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>跨境支付产品经理（售前解决方案）</h3>
+<div class='company-name'>🏢 深圳市光子跃动科...</div>
+</div>
+<div class='salary-badge'>💰 25-40K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·南山区·科技园</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>深圳市光 | 深圳市光子跃动科... | 子跃动科</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 21:48:26</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>AI 售前工程师（顾问）</h3>
+<div class='company-name'>🏢 深圳智生金人工智能</div>
+</div>
+<div class='salary-badge'>💰 15-30K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·南山区·科技园</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>深圳智生 | 深圳智生金人工智能 | 金人工智能</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 21:47:52</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>售前/Presales</h3>
+<div class='company-name'>🏢 金智维</div>
+</div>
+<div class='salary-badge'>💰 20-25K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·南山区·科技园</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>金智维 | 金智维 | HRBP专员</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 21:47:16</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>云安全产品解决方案-上海/深圳</h3>
+<div class='company-name'>🏢 字节跳动</div>
+</div>
+<div class='salary-badge'>💰 25-50K·15薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·南山区·科技园</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>字节跳动 | 字节跳动 | 招聘HR</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 21:46:44</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>售前工程师（中高级）</h3>
+<div class='company-name'>🏢 同为股份</div>
+</div>
+<div class='salary-badge'>💰 25-50K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·南山区·科技园</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>同为股份 | 同为股份 | HR</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 21:46:11</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>Ebike产品项目经理（硬件技术出身-双休）</h3>
+<div class='company-name'>🏢 Heybike</div>
+</div>
+<div class='salary-badge'>💰 20-25K·13薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·南山区·前海</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>未知 | Heybike | Heybike·HR</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 21:45:33</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>售前经理（外派马来西亚）</h3>
+<div class='company-name'>🏢 北京博睿宏远</div>
+</div>
+<div class='salary-badge'>💰 22-30K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·南山区·科技园</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>北京博睿 | 北京博睿宏远 | 宏远</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 21:45:00</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>售前技术支持经理-九江</h3>
+<div class='company-name'>🏢 捷誊技术</div>
+</div>
+<div class='salary-badge'>💰 15-25K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·南山区·科技园</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>捷誊技术 | 捷誊技术 | 招聘培训主管</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 21:44:26</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>【充电桩 售前售后技术支持工程师】</h3>
+<div class='company-name'>🏢 南京博兰得</div>
+</div>
+<div class='salary-badge'>💰 15-25K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·宝安区·西乡</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>南京博兰 | 南京博兰得 | 得</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 21:43:57</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>售前技术支持</h3>
+<div class='company-name'>🏢 极联股份</div>
+</div>
+<div class='salary-badge'>💰 15-25K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·南山区·西丽</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>极联股份 | 极联股份 | HR</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-21 21:14:24</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>售前技术支持</h3>
+<div class='company-name'>🏢 极联股份</div>
+</div>
+<div class='salary-badge'>💰 15-25K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·南山区·西丽</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>极联股份 | 极联股份 | HR</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-20 18:23:33</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>海外解决方案工程师</h3>
+<div class='company-name'>🏢 雄帝科技</div>
+</div>
+<div class='salary-badge'>💰 15-25K·14薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·南山区·科技园</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>雄帝科技 | 雄帝科技 | 招聘经理</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-20 18:22:32</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>解决方案架构师</h3>
+<div class='company-name'>🏢 深圳市英威腾</div>
+</div>
+<div class='salary-badge'>💰 15-30K·14薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·光明区·光明</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>深圳市英 | 深圳市英威腾 | 威腾</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-20 18:22:01</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>高级安防解决方案经理</h3>
+<div class='company-name'>🏢 臻识科技</div>
+</div>
+<div class='salary-badge'>💰 20-30K</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·南山区·科技园</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>臻识科技 | 臻识科技 | HRBP</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-20 18:21:27</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>解决方案经理</h3>
+<div class='company-name'>🏢 智谱华章</div>
+</div>
+<div class='salary-badge'>💰 20-40K·16薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·南山区·西丽</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>智谱华章 | 智谱华章 | HR</span>
+</div>
+</div>
+</div>
+<div class='delivery-card'>
+<div class='time-dot'></div>
+<div class='time-label'>2025-05-20 18:20:57</div>
+<div class='card-header'>
+<div class='job-info'>
+<h3>解决方案工程师</h3>
+<div class='company-name'>🏢 MUST</div>
+</div>
+<div class='salary-badge'>💰 18-25K·13薪</div>
+</div>
+<div class='card-content'>
+<div class='info-item'>
+<span class='info-icon'>📍</span>
+<span class='info-label'>工作地点:</span>
+<span class='info-value'>深圳·南山区·科技园</span>
+</div>
+<div class='info-item'>
+<span class='info-icon'>👤</span>
+<span class='info-label'>招聘者:</span>
+<span class='info-value'>高级招聘 | MUST | 专员</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
